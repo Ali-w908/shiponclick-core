@@ -26,7 +26,7 @@ export default function MarketingPage() {
             {/* Pricing Section Wrapper */}
             <section className="py-24 bg-background relative overflow-hidden" id="pricing">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mx-auto max-w-2xl text-center scroll-reveal mb-16">
+                    <div className="mx-auto max-w-2xl text-center mb-16">
                         <span className="text-primary font-mono text-sm tracking-wider uppercase mb-2 block">Pricing</span>
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-heading">
                             One price. Infinite value.
@@ -35,7 +35,7 @@ export default function MarketingPage() {
                             Stop paying monthly subscriptions for boilerplate. Own the code forever.
                         </p>
                     </div>
-                    <div className="flex justify-center scroll-reveal-scale">
+                    <div className="flex justify-center">
                         <PricingCard />
                     </div>
                 </div>
