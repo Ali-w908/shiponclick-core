@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>/ — graphify tree viewer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      margin: 20px 0 0 24px;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1e3a56;
+    }
+    .controls {
+      margin: 20px 0 15px 24px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 18px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:active {
+      background: #004085;
+    }
+    #tree-container {
+      width: calc(100vw - 48px); /* Adjust for body margin/padding */
+      height: 85vh;
+      overflow: auto;
+      border-radius: 8px;
+      background: #fff;
+      margin-left: 24px;
+      margin-right: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ddd;
+    }
+    svg {
+      background: #fff;
+      border-radius: 8px;
+      display: block; /* Important for D3 */
+    }
+    .node circle {
+      stroke-width: 2.5px;
+    }
+    .node text { /* Base style for the <text> container */
+      font: 13px 'Segoe UI', sans-serif;
+      paint-order: stroke fill; /* Ensures text is readable over lines */
+      stroke: #fff; /* White halo */
+      stroke-width: 3px; /* Halo thickness */
+      stroke-linejoin: round;
+      stroke-opacity: 0.85; /* Halo opacity */
+    }
+    .link {
+      fill: none;
+      stroke-opacity: 0.7;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>/ — Knowledge Graph</h1>
+  <div class="controls">
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+    <button onclick="resetView()">Reset View</button>
+  </div>
+  <div id="tree-container">
+    <svg id="tree-svg" width="6000" height="8000"></svg>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    const initialJsonData = {"name":"/","total_count":357,"children":[{"name":"eslint.config.mjs","total_count":1,"children":[{"name":"eslintConfig","total_count":1,"children":[]}]},{"name":"middleware.ts","total_count":1,"children":[{"name":"config","total_count":1,"children":[]}]},{"name":"next.config.ts","total_count":1,"children":[{"name":"nextConfig","total_count":1,"children":[]}]},{"name":"package.json","total_count":108,"children":[{"name":"@auth/prisma-adapter","total_count":1,"children":[]},{"name":"@auth/prisma-adapter","total_count":1,"children":[]},{"name":"@playwright/test","total_count":1,"children":[]},{"name":"@playwright/test","total_count":1,"children":[]},{"name":"@prisma/client","total_count":1,"children":[]},{"name":"@prisma/client","total_count":1,"children":[]},{"name":"@radix-ui/react-slot","total_count":1,"children":[]},{"name":"@radix-ui/react-slot","total_count":1,"children":[]},{"name":"@tailwindcss/postcss","total_count":1,"children":[]},{"name":"@tailwindcss/postcss","total_count":1,"children":[]},{"name":"@testing-library/dom","total_count":1,"children":[]},{"name":"@testing-library/dom","total_count":1,"children":[]},{"name":"@testing-library/react","total_count":1,"children":[]},{"name":"@testing-library/react","total_count":1,"children":[]},{"name":"@testing-library/user-event","total_count":1,"children":[]},{"name":"@testing-library/user-event","total_count":1,"children":[]},{"name":"@types/bcryptjs","total_count":1,"children":[]},{"name":"@types/bcryptjs","total_count":1,"children":[]},{"name":"@types/node","total_count":1,"children":[]},{"name":"@types/node","total_count":1,"children":[]},{"name":"@types/react","total_count":1,"children":[]},{"name":"@types/react","total_count":1,"children":[]},{"name":"@types/react-dom","total_count":1,"children":[]},{"name":"@types/react-dom","total_count":1,"children":[]},{"name":"@vitest/coverage-v8","total_count":1,"children":[]},{"name":"@vitest/coverage-v8","total_count":1,"children":[]},{"name":"@vitest/ui","total_count":1,"children":[]},{"name":"@vitest/ui","total_count":1,"children":[]},{"name":"bcryptjs","total_count":1,"children":[]},{"name":"bcryptjs","total_count":1,"children":[]},{"name":"build","total_count":1,"children":[]},{"name":"class-variance-authority","total_count":1,"children":[]},{"name":"class-variance-authority","total_count":1,"children":[]},{"name":"clsx","total_count":1,"children":[]},{"name":"clsx","total_count":1,"children":[]},{"name":"db:generate","total_count":1,"children":[]},{"name":"db:migrate","total_count":1,"children":[]},{"name":"db:push","total_count":1,"children":[]},{"name":"db:seed","total_count":1,"children":[]},{"name":"db:studio","total_count":1,"children":[]},{"name":"dependencies","total_count":1,"children":[]},{"name":"dev","total_count":1,"children":[]},{"name":"devDependencies","total_count":1,"children":[]},{"name":"dotenv","total_count":1,"children":[]},{"name":"dotenv","total_count":1,"children":[]},{"name":"eslint","total_count":1,"children":[]},{"name":"eslint","total_count":1,"children":[]},{"name":"eslint-config-next","total_count":1,"children":[]},{"name":"eslint-config-next","total_count":1,"children":[]},{"name":"eslint-config-prettier","total_count":1,"children":[]},{"name":"eslint-config-prettier","total_count":1,"children":[]},{"name":"eslint-plugin-prettier","total_count":1,"children":[]},{"name":"eslint-plugin-prettier","total_count":1,"children":[]},{"name":"format","total_count":1,"children":[]},{"name":"format:check","total_count":1,"children":[]},{"name":"happy-dom","total_count":1,"children":[]},{"name":"happy-dom","total_count":1,"children":[]},{"name":"lint","total_count":1,"children":[]},{"name":"lint:fix","total_count":1,"children":[]},{"name":"lucide-react","total_count":1,"children":[]},{"name":"lucide-react","total_count":1,"children":[]},{"name":"msw","total_count":1,"children":[]},{"name":"msw","total_count":1,"children":[]},{"name":"name","total_count":1,"children":[]},{"name":"next","total_count":1,"children":[]},{"name":"next","total_count":1,"children":[]},{"name":"next-auth","total_count":1,"children":[]},{"name":"next-auth","total_count":1,"children":[]},{"name":"prettier","total_count":1,"children":[]},{"name":"prettier","total_count":1,"children":[]},{"name":"prettier-plugin-tailwindcss","total_count":1,"children":[]},{"name":"prettier-plugin-tailwindcss","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]},{"name":"private","total_count":1,"children":[]},{"name":"react","total_count":1,"children":[]},{"name":"react","total_count":1,"children":[]},{"name":"react-dom","total_count":1,"children":[]},{"name":"react-dom","total_count":1,"children":[]},{"name":"resend","total_count":1,"children":[]},{"name":"resend","total_count":1,"children":[]},{"name":"scripts","total_count":1,"children":[]},{"name":"start","total_count":1,"children":[]},{"name":"stripe","total_count":1,"children":[]},{"name":"stripe","total_count":1,"children":[]},{"name":"tailwind-merge","total_count":1,"children":[]},{"name":"tailwind-merge","total_count":1,"children":[]},{"name":"tailwindcss","total_count":1,"children":[]},{"name":"tailwindcss","total_count":1,"children":[]},{"name":"test","total_count":1,"children":[]},{"name":"test:coverage","total_count":1,"children":[]},{"name":"test:e2e","total_count":1,"children":[]},{"name":"test:e2e:headed","total_count":1,"children":[]},{"name":"test:e2e:ui","total_count":1,"children":[]},{"name":"test:integration","total_count":1,"children":[]},{"name":"test:run","total_count":1,"children":[]},{"name":"test:security","total_count":1,"children":[]},{"name":"test:ui","total_count":1,"children":[]},{"name":"test:unit","total_count":1,"children":[]},{"name":"tsx","total_count":1,"children":[]},{"name":"tsx","total_count":1,"children":[]},{"name":"typescript","total_count":1,"children":[]},{"name":"typescript","total_count":1,"children":[]},{"name":"version","total_count":1,"children":[]},{"name":"vitest","total_count":1,"children":[]},{"name":"vitest","total_count":1,"children":[]},{"name":"zod","total_count":1,"children":[]},{"name":"zod","total_count":1,"children":[]}]},{"name":"postcss.config.mjs","total_count":1,"children":[{"name":"config","total_count":1,"children":[]}]},{"name":"prisma","total_count":2,"children":[{"name":"seed.ts","total_count":2,"children":[{"name":"main()","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]}]}]},{"name":"scripts","total_count":9,"children":[{"name":"capture-screenshots.ts","total_count":1,"children":[{"name":"capture()","total_count":1,"children":[]}]},{"name":"check-users.ts","total_count":2,"children":[{"name":"main()","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]}]},{"name":"debug-registration.ts","total_count":2,"children":[{"name":"main()","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]}]},{"name":"wait-for-port.js","total_count":4,"children":[{"name":"client","total_count":1,"children":[]},{"name":"net","total_count":1,"children":[]},{"name":"start","total_count":1,"children":[]},{"name":"tryConnect()","total_count":1,"children":[]}]}]},{"name":"src","total_count":125,"children":[{"name":"actions","total_count":18,"children":[{"name":"auth-actions.ts","total_count":6,"children":[{"name":"authenticate()","total_count":1,"children":[]},{"name":"loginWithGithub()","total_count":1,"children":[]},{"name":"loginWithGoogle()","total_count":1,"children":[]},{"name":"logOut()","total_count":1,"children":[]},{"name":"register()","total_count":1,"children":[]},{"name":"RegisterSchema","total_count":1,"children":[]}]},{"name":"billing-actions.ts","total_count":6,"children":[{"name":"cancelSubscription()","total_count":1,"children":[]},{"name":"createCheckout()","total_count":1,"children":[]},{"name":"createPortal()","total_count":1,"children":[]},{"name":"getSubscriptionDetails()","total_count":1,"children":[]},{"name":"requireBillingPermission()","total_count":1,"children":[]},{"name":"resumeSubscription()","total_count":1,"children":[]}]},{"name":"org-actions.ts","total_count":5,"children":[{"name":"acceptInvite()","total_count":1,"children":[]},{"name":"inviteUser()","total_count":1,"children":[]},{"name":"removeMember()","total_count":1,"children":[]},{"name":"revokeInvite()","total_count":1,"children":[]},{"name":"updateMemberRole()","total_count":1,"children":[]}]},{"name":"user-actions.ts","total_count":1,"children":[{"name":"updateUserProfile()","total_count":1,"children":[]}]}]},{"name":"app","total_count":33,"children":[{"name":"(auth)","total_count":2,"children":[{"name":"login","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"LoginPage()","total_count":1,"children":[]}]}]},{"name":"register","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"RegisterPage()","total_count":1,"children":[]}]}]}]},{"name":"(dashboard)","total_count":7,"children":[{"name":"[orgId]","total_count":5,"children":[{"name":"dashboard","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"DashboardPage()","total_count":1,"children":[]}]}]},{"name":"layout.tsx","total_count":1,"children":[{"name":"OrgLayout()","total_count":1,"children":[]}]},{"name":"settings","total_count":3,"children":[{"name":"billing","total_count":2,"children":[{"name":"page.tsx","total_count":2,"children":[{"name":"BillingPage()","total_count":1,"children":[]},{"name":"StatusBadge()","total_count":1,"children":[]}]}]},{"name":"page.tsx","total_count":1,"children":[{"name":"SettingsPage()","total_count":1,"children":[]}]}]}]},{"name":"layout.tsx","total_count":1,"children":[{"name":"DashboardRootLayout()","total_count":1,"children":[]}]},{"name":"settings","total_count":1,"children":[{"name":"profile","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"ProfilePage()","total_count":1,"children":[]}]}]}]}]},{"name":"(marketing)","total_count":3,"children":[{"name":"layout.tsx","total_count":1,"children":[{"name":"MarketingLayout()","total_count":1,"children":[]}]},{"name":"page.tsx","total_count":1,"children":[{"name":"LandingPage()","total_count":1,"children":[]}]},{"name":"pricing","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"PricingPage()","total_count":1,"children":[]}]}]}]},{"name":"api","total_count":14,"children":[{"name":"auth","total_count":1,"children":[{"name":"[...nextauth]","total_count":1,"children":[{"name":"route.ts","total_count":1,"children":[{"name":"{ GET, POST }","total_count":1,"children":[]}]}]}]},{"name":"webhooks","total_count":13,"children":[{"name":"stripe","total_count":13,"children":[{"name":"route.ts","total_count":13,"children":[{"name":"getCustomerId()","total_count":1,"children":[]},{"name":"getSubscriptionData()","total_count":1,"children":[]},{"name":"getSubscriptionId()","total_count":1,"children":[]},{"name":"handleCheckoutCompleted()","total_count":1,"children":[]},{"name":"handleInvoicePaymentFailed()","total_count":1,"children":[]},{"name":"handleInvoicePaymentSucceeded()","total_count":1,"children":[]},{"name":"handleSubscriptionDeleted()","total_count":1,"children":[]},{"name":"handleSubscriptionUpdated()","total_count":1,"children":[]},{"name":"mapStripeStatus()","total_count":1,"children":[]},{"name":"POST()","total_count":1,"children":[]},{"name":"SubscriptionData","total_count":1,"children":[]},{"name":"TODO: Trigger email notification to org owner","total_count":1,"children":[]},{"name":"updateOrgSubscription()","total_count":1,"children":[]}]}]}]}]},{"name":"invite","total_count":1,"children":[{"name":"[token]","total_count":1,"children":[{"name":"page.tsx","total_count":1,"children":[{"name":"InvitePage()","total_count":1,"children":[]}]}]}]},{"name":"layout.tsx","total_count":4,"children":[{"name":"geistMono","total_count":1,"children":[]},{"name":"geistSans","total_count":1,"children":[]},{"name":"metadata","total_count":1,"children":[]},{"name":"RootLayout()","total_count":1,"children":[]}]},{"name":"robots.ts","total_count":1,"children":[{"name":"robots()","total_count":1,"children":[]}]},{"name":"sitemap.ts","total_count":1,"children":[{"name":"sitemap()","total_count":1,"children":[]}]}]},{"name":"components","total_count":38,"children":[{"name":"dashboard","total_count":15,"children":[{"name":"invite-form.tsx","total_count":1,"children":[{"name":"InviteForm()","total_count":1,"children":[]}]},{"name":"members-table.tsx","total_count":7,"children":[{"name":"handleRemoveMember()","total_count":1,"children":[]},{"name":"handleRevokeInvite()","total_count":1,"children":[]},{"name":"handleRoleChange()","total_count":1,"children":[]},{"name":"Invite","total_count":1,"children":[]},{"name":"Member","total_count":1,"children":[]},{"name":"MembersTable()","total_count":1,"children":[]},{"name":"UserRole","total_count":1,"children":[]}]},{"name":"overview.tsx","total_count":1,"children":[{"name":"Overview()","total_count":1,"children":[]}]},{"name":"profile-form.tsx","total_count":1,"children":[{"name":"ProfileForm()","total_count":1,"children":[]}]},{"name":"sidebar.tsx","total_count":5,"children":[{"name":"CogIcon()","total_count":1,"children":[]},{"name":"CreditCardIcon()","total_count":1,"children":[]},{"name":"DashboardSidebar()","total_count":1,"children":[]},{"name":"HomeIcon()","total_count":1,"children":[]},{"name":"UsersIcon()","total_count":1,"children":[]}]}]},{"name":"marketing","total_count":9,"children":[{"name":"faq.tsx","total_count":2,"children":[{"name":"FAQ()","total_count":1,"children":[]},{"name":"faqs","total_count":1,"children":[]}]},{"name":"features.tsx","total_count":1,"children":[{"name":"Features","total_count":1,"children":[]}]},{"name":"footer.tsx","total_count":1,"children":[{"name":"Footer()","total_count":1,"children":[]}]},{"name":"hero.tsx","total_count":1,"children":[{"name":"Hero()","total_count":1,"children":[]}]},{"name":"navbar.tsx","total_count":1,"children":[{"name":"Navbar()","total_count":1,"children":[]}]},{"name":"pricing-card.tsx","total_count":3,"children":[{"name":"CheckIcon()","total_count":1,"children":[]},{"name":"PricingCard()","total_count":1,"children":[]},{"name":"PricingCardProps","total_count":1,"children":[]}]}]},{"name":"providers.tsx","total_count":1,"children":[{"name":"Providers()","total_count":1,"children":[]}]},{"name":"ui","total_count":13,"children":[{"name":"button.tsx","total_count":3,"children":[{"name":"Button","total_count":1,"children":[]},{"name":"ButtonProps","total_count":1,"children":[]},{"name":"buttonVariants","total_count":1,"children":[]}]},{"name":"card.tsx","total_count":6,"children":[{"name":"Card","total_count":1,"children":[]},{"name":"CardContent","total_count":1,"children":[]},{"name":"CardDescription","total_count":1,"children":[]},{"name":"CardFooter","total_count":1,"children":[]},{"name":"CardHeader","total_count":1,"children":[]},{"name":"CardTitle","total_count":1,"children":[]}]},{"name":"login-form.tsx","total_count":2,"children":[{"name":"LoginButton()","total_count":1,"children":[]},{"name":"LoginForm()","total_count":1,"children":[]}]},{"name":"register-form.tsx","total_count":2,"children":[{"name":"RegisterButton()","total_count":1,"children":[]},{"name":"RegisterForm()","total_count":1,"children":[]}]}]}]},{"name":"config","total_count":1,"children":[{"name":"metadata.ts","total_count":1,"children":[{"name":"metadata","total_count":1,"children":[]}]}]},{"name":"lib","total_count":27,"children":[{"name":"auth-types.ts","total_count":3,"children":[{"name":".constructor()","total_count":1,"children":[]},{"name":"ActionState","total_count":1,"children":[]},{"name":"AuthActionError","total_count":1,"children":[]}]},{"name":"auth.config.ts","total_count":1,"children":[{"name":"authConfig","total_count":1,"children":[]}]},{"name":"auth.ts","total_count":1,"children":[{"name":"{ handlers, auth, signIn, signOut }","total_count":1,"children":[]}]},{"name":"db.ts","total_count":2,"children":[{"name":"globalForPrisma","total_count":1,"children":[]},{"name":"prisma","total_count":1,"children":[]}]},{"name":"email.ts","total_count":3,"children":[{"name":"getResend()","total_count":1,"children":[]},{"name":"sendInviteEmail()","total_count":1,"children":[]},{"name":"SendInviteParams","total_count":1,"children":[]}]},{"name":"stripe.ts","total_count":8,"children":[{"name":"cancelSubscriptionAtPeriodEnd()","total_count":1,"children":[]},{"name":"createBillingPortalSession()","total_count":1,"children":[]},{"name":"createCheckoutSession()","total_count":1,"children":[]},{"name":"createCustomer()","total_count":1,"children":[]},{"name":"getStripe()","total_count":1,"children":[]},{"name":"getSubscription()","total_count":1,"children":[]},{"name":"resumeSubscription()","total_count":1,"children":[]},{"name":"stripe","total_count":1,"children":[]}]},{"name":"subscription.ts","total_count":4,"children":[{"name":"getSubscriptionStatus()","total_count":1,"children":[]},{"name":"hasSubscriptionPlan()","total_count":1,"children":[]},{"name":"PRICING_PLANS","total_count":1,"children":[]},{"name":"requireActiveSubscription()","total_count":1,"children":[]}]},{"name":"utils.ts","total_count":5,"children":[{"name":"absoluteUrl()","total_count":1,"children":[]},{"name":"cn()","total_count":1,"children":[]},{"name":"formatCurrency()","total_count":1,"children":[]},{"name":"formatDate()","total_count":1,"children":[]},{"name":"slugify()","total_count":1,"children":[]}]}]},{"name":"types","total_count":8,"children":[{"name":"index.ts","total_count":8,"children":[{"name":"ApiResponse","total_count":1,"children":[]},{"name":"AuthUser","total_count":1,"children":[]},{"name":"MemberWithUser","total_count":1,"children":[]},{"name":"NavItem","total_count":1,"children":[]},{"name":"OrganizationWithSubscription","total_count":1,"children":[]},{"name":"PaginatedResponse","total_count":1,"children":[]},{"name":"PaginationParams","total_count":1,"children":[]},{"name":"PlanTier","total_count":1,"children":[]}]}]}]},{"name":"tests","total_count":77,"children":[{"name":"e2e","total_count":6,"children":[{"name":"auth.setup.ts","total_count":1,"children":[{"name":"authFile","total_count":1,"children":[]}]},{"name":"auth.spec.ts","total_count":1,"children":[]},{"name":"billing.spec.ts","total_count":1,"children":[]},{"name":"capture-screenshots.spec.ts","total_count":1,"children":[]},{"name":"dashboard.spec.ts","total_count":1,"children":[]},{"name":"mobile.spec.ts","total_count":1,"children":[]}]},{"name":"factories","total_count":19,"children":[{"name":"index.ts","total_count":19,"children":[{"name":"createExpiredInvite()","total_count":1,"children":[]},{"name":"createMockAdmin()","total_count":1,"children":[]},{"name":"createMockAuditLog()","total_count":1,"children":[]},{"name":"createMockBillingMember()","total_count":1,"children":[]},{"name":"createMockInvite()","total_count":1,"children":[]},{"name":"createMockMember()","total_count":1,"children":[]},{"name":"createMockOrganization()","total_count":1,"children":[]},{"name":"createMockOrganizationWithSubscription()","total_count":1,"children":[]},{"name":"createMockOwner()","total_count":1,"children":[]},{"name":"createMockUser()","total_count":1,"children":[]},{"name":"createSubscribedScenario()","total_count":1,"children":[]},{"name":"createTestScenario()","total_count":1,"children":[]},{"name":"generateId()","total_count":1,"children":[]},{"name":"MockAuditLog","total_count":1,"children":[]},{"name":"MockInvite","total_count":1,"children":[]},{"name":"MockMember","total_count":1,"children":[]},{"name":"MockOrganization","total_count":1,"children":[]},{"name":"MockUser","total_count":1,"children":[]},{"name":"resetIdCounter()","total_count":1,"children":[]}]}]},{"name":"fixtures","total_count":5,"children":[{"name":"index.ts","total_count":5,"children":[{"name":"multiOrgScenarios","total_count":1,"children":[]},{"name":"subscriptionStates","total_count":1,"children":[]},{"name":"teamRoles","total_count":1,"children":[]},{"name":"validationCases","total_count":1,"children":[]},{"name":"webhookEvents","total_count":1,"children":[]}]}]},{"name":"integration","total_count":3,"children":[{"name":"actions","total_count":2,"children":[{"name":"auth.test.ts","total_count":1,"children":[]},{"name":"org.test.ts","total_count":1,"children":[]}]},{"name":"webhooks","total_count":1,"children":[{"name":"stripe.test.ts","total_count":1,"children":[]}]}]},{"name":"mocks","total_count":33,"children":[{"name":"auth.ts","total_count":11,"children":[{"name":"createAuthenticatedUser()","total_count":1,"children":[]},{"name":"createMockSession()","total_count":1,"children":[]},{"name":"mockAuth","total_count":1,"children":[]},{"name":"mockSession","total_count":1,"children":[]},{"name":"mockSignIn","total_count":1,"children":[]},{"name":"mockSignOut","total_count":1,"children":[]},{"name":"mockUser","total_count":1,"children":[]},{"name":"resetAuthMocks()","total_count":1,"children":[]},{"name":"setMockRole()","total_count":1,"children":[]},{"name":"setMockSession()","total_count":1,"children":[]},{"name":"setUnauthenticated()","total_count":1,"children":[]}]},{"name":"prisma.ts","total_count":4,"children":[{"name":"createModelMock()","total_count":1,"children":[]},{"name":"MockFunction","total_count":1,"children":[]},{"name":"mockPrisma","total_count":1,"children":[]},{"name":"resetPrismaMocks()","total_count":1,"children":[]}]},{"name":"stripe.ts","total_count":17,"children":[{"name":"billingPortal()","total_count":1,"children":[]},{"name":"checkout()","total_count":1,"children":[]},{"name":"createMockSubscription()","total_count":1,"children":[]},{"name":"createMockWebhookEvent()","total_count":1,"children":[]},{"name":"customers()","total_count":1,"children":[]},{"name":"generateMockStripeSignature()","total_count":1,"children":[]},{"name":"mockBillingPortalSession","total_count":1,"children":[]},{"name":"mockCheckoutSession","total_count":1,"children":[]},{"name":"mockGetStripe","total_count":1,"children":[]},{"name":"mockInvoice","total_count":1,"children":[]},{"name":"mockStripe","total_count":1,"children":[]},{"name":"mockStripeCustomer","total_count":1,"children":[]},{"name":"mockStripeSubscription","total_count":1,"children":[]},{"name":"MockSubscriptionStatus","total_count":1,"children":[]},{"name":"resetStripeMocks()","total_count":1,"children":[]},{"name":"subscriptions()","total_count":1,"children":[]},{"name":"webhooks()","total_count":1,"children":[]}]},{"name":"index.ts","total_count":1,"children":[]}]},{"name":"security","total_count":2,"children":[{"name":"authorization.test.ts","total_count":1,"children":[]},{"name":"input-validation.test.ts","total_count":1,"children":[]}]},{"name":"unit","total_count":8,"children":[{"name":"auth","total_count":2,"children":[{"name":"validation.test.ts","total_count":2,"children":[{"name":"CredentialsSchema","total_count":1,"children":[]},{"name":"RegisterSchema","total_count":1,"children":[]}]}]},{"name":"lib","total_count":3,"children":[{"name":"email.test.ts","total_count":1,"children":[{"name":"mockEmailsSend","total_count":1,"children":[]}]},{"name":"subscription.test.ts","total_count":1,"children":[]},{"name":"utils.test.ts","total_count":1,"children":[]}]},{"name":"webhooks","total_count":3,"children":[{"name":"helpers.test.ts","total_count":3,"children":[{"name":"getCustomerId()","total_count":1,"children":[]},{"name":"getSubscriptionId()","total_count":1,"children":[]},{"name":"mapStripeStatus()","total_count":1,"children":[]}]}]}]},{"name":"setup.ts","total_count":1,"children":[]}]},{"name":"tsconfig.json","total_count":29,"children":[{"name":"**/*.mts","total_count":1,"children":[]},{"name":"**/*.ts","total_count":1,"children":[]},{"name":"**/*.tsx","total_count":1,"children":[]},{"name":".next/dev/types/**/*.ts","total_count":1,"children":[]},{"name":".next/types/**/*.ts","total_count":1,"children":[]},{"name":"allowJs","total_count":1,"children":[]},{"name":"compilerOptions","total_count":1,"children":[]},{"name":"dom","total_count":1,"children":[]},{"name":"dom.iterable","total_count":1,"children":[]},{"name":"esModuleInterop","total_count":1,"children":[]},{"name":"esnext","total_count":1,"children":[]},{"name":"exclude","total_count":1,"children":[]},{"name":"include","total_count":1,"children":[]},{"name":"incremental","total_count":1,"children":[]},{"name":"isolatedModules","total_count":1,"children":[]},{"name":"jsx","total_count":1,"children":[]},{"name":"lib","total_count":1,"children":[]},{"name":"module","total_count":1,"children":[]},{"name":"moduleResolution","total_count":1,"children":[]},{"name":"next-env.d.ts","total_count":1,"children":[]},{"name":"node_modules","total_count":1,"children":[]},{"name":"noEmit","total_count":1,"children":[]},{"name":"paths","total_count":1,"children":[]},{"name":"plugins","total_count":1,"children":[]},{"name":"resolveJsonModule","total_count":1,"children":[]},{"name":"skipLibCheck","total_count":1,"children":[]},{"name":"strict","total_count":1,"children":[]},{"name":"target","total_count":1,"children":[]},{"name":"tests","total_count":1,"children":[]}]},{"name":"next","total_count":1,"children":[]},{"name":"playwright.config.ts","total_count":1,"children":[]},{"name":"vitest.config.ts","total_count":1,"children":[]}]};
+
+    function transformData(jsonData) {
+        // Helper function to recursively build the children structure
+        function processNode(node, parentL1StageName) {
+            let displayName = node.name;
+            // Append total_count if it exists and is not already in the name
+            if (node.total_count !== undefined) {
+                if (!/\(Total Count: \d+\)$/.test(displayName)) {
+                    displayName += ` (Total Count: ${node.total_count})`;
+                }
+            }
+
+            const newNode = { name: displayName };
+
+            if (parentL1StageName === "Root") {
+                 newNode.originalStageName = node.name;
+            } else {
+                newNode.originalStageName = parentL1StageName;
+            }
+
+            if (node.children && node.children.length > 0) {
+                const stageNameToPass = (parentL1StageName === "Root") ? node.name : parentL1StageName;
+                newNode.children = node.children.map(child => processNode(child, stageNameToPass));
+            }
+
+            return newNode;
+        }
+
+        let rootDisplayName = jsonData.name;
+        if (jsonData.total_count !== undefined && !/\(Total Count: \d+\)$/.test(rootDisplayName)) {
+            rootDisplayName += ` (Total Count: ${jsonData.total_count})`;
+        }
+
+        return {
+            name: rootDisplayName,
+            originalStageName: "Root",
+            children: (jsonData.children || []).map(child => processNode(child, "Root"))
+        };
+    }
+
+    const treeData = transformData(initialJsonData);
+
+    // Auto-populated phaseColors: every depth-1 child of the root gets
+    // a stable colour from a bigger palette so all top-level dirs are
+    // distinguishable.
+    const PALETTE = [
+      ["#3498DB","#2980B9","#AED6F1"], ["#2ECC71","#27AE60","#A9DFBF"],
+      ["#E74C3C","#C0392B","#F5B7B1"], ["#9B59B6","#8E44AD","#D7BDE2"],
+      ["#F39C12","#D68910","#FAD7A0"], ["#1ABC9C","#117864","#A2D9CE"],
+      ["#34495E","#1B2631","#ABB2B9"], ["#E67E22","#BA4A00","#F5CBA7"],
+      ["#16A085","#0E6655","#A2D9CE"], ["#D35400","#A04000","#EDBB99"],
+      ["#7F8C8D","#566573","#D5DBDB"], ["#C0392B","#7B241C","#F5B7B1"],
+      ["#2E86C1","#1B4F72","#A9CCE3"], ["#28B463","#196F3D","#A9DFBF"],
+      ["#AF7AC5","#6C3483","#D2B4DE"],
+    ];
+    const phaseColors = { "Root": { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+                          "Default": { fill: "#BDC3C7", stroke: "#95A5A6", collapsedFill: "#ECF0F1" } };
+    (initialJsonData.children || []).forEach((c, i) => {
+      const pal = PALETTE[i % PALETTE.length];
+      phaseColors[c.name] = { fill: pal[0], stroke: pal[1], collapsedFill: pal[2] };
+    });
+
+    const levelSpecificPalettes = {
+      0: { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+      2: { fill: "#6ab04c", stroke: "#508a38", collapsedFill: "#a3d391" },
+      3: { fill: "#f0932b", stroke: "#d0730f", collapsedFill: "#f6c07e" },
+      4: { fill: "#be2edd", stroke: "#a01cb3", collapsedFill: "#e08bf2" },
+      5: { fill: "#00a8ff", stroke: "#007ac1", collapsedFill: "#74d2ff" },
+      6: { fill: "#e55039", stroke: "#c23620", collapsedFill: "#f09a8d" },
+      default: { fill: "#747d8c", stroke: "#57606f", collapsedFill: "#a4b0be" }
+    };
+
+    const svgElement = d3.select("#tree-svg");
+    const initialSvgWidth = +svgElement.attr("width");
+    const initialSvgHeight = +svgElement.attr("height");
+    const margin = { top: 40, right: 120, bottom: 80, left: 450 };
+    let width = initialSvgWidth - margin.left - margin.right;
+    let height = initialSvgHeight - margin.top - margin.bottom;
+    const duration = 500;
+    let nodeCounter = 0;
+    const g = svgElement.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const treemap = d3.tree().nodeSize([40, 0]);
+    let rootNode = d3.hierarchy(treeData, d => d.children);
+    rootNode.x0 = 0;
+    rootNode.y0 = 0;
+
+    if (rootNode.children) {
+      rootNode.children.forEach(d_child => {
+        if (d_child.children) { collapseBranch(d_child); }
+      });
+    }
+    updateTree(rootNode);
+
+    function collapseBranch(d) { if (d.children) { d._children = d.children; d._children.forEach(collapseBranch); d.children = null; } }
+    function expandBranch(d) { if (d._children) { d.children = d._children; d._children = null; } if (d.children) { d.children.forEach(expandBranch); } }
+    window.expandAll = () => { expandBranch(rootNode); updateTree(rootNode); };
+    window.collapseAll = () => { if (rootNode.children) { rootNode.children.forEach(collapseBranch); } updateTree(rootNode); };
+    window.resetView = () => { if (rootNode.children) { rootNode.children.forEach(d_child => { if (d_child.children || d_child._children) { collapseBranch(d_child); } }); } if (rootNode._children && !rootNode.children) { rootNode.children = rootNode._children; rootNode._children = null; } updateTree(rootNode); };
+
+    function updateTree(source) {
+      const treeLayoutData = treemap(rootNode);
+      let nodes = treeLayoutData.descendants();
+      let links = treeLayoutData.descendants().slice(1);
+
+      let minX = 0;
+      let maxX = 0;
+      if (nodes.length > 0) {
+        minX = d3.min(nodes, d => d.x);
+        maxX = d3.max(nodes, d => d.x);
+      }
+
+      let neededHeight = Math.max(initialSvgHeight, maxX - minX + margin.top + margin.bottom + 100);
+      svgElement.transition().duration(duration / 2).attr("height", neededHeight);
+      g.transition().duration(duration / 2).attr("transform", `translate(${margin.left},${margin.top - minX + 40})`);
+
+      nodes.forEach(d => { d.y = d.depth * 400; }); // Adjust horizontal separation if needed
+
+      const node = g.selectAll('g.node').data(nodes, d => d.id || (d.id = ++nodeCounter));
+      const nodeEnter = node.enter().append('g')
+        .attr('class', d => "node" + (d.children || d._children ? " node--internal" : " node--leaf") + (d._children ? " _children" : ""))
+        .attr('transform', d => `translate(${source.y0},${source.x0})`)
+        .on('click', (event, d) => { if (d.children) { d._children = d.children; d.children = null; } else if (d._children) { d.children = d._children; d._children = null; } updateTree(d); })
+        .style('cursor', d => (d.children || d._children) ? 'pointer' : 'default');
+
+      nodeEnter.append('circle').attr('r', 1e-6);
+
+      nodeEnter.append('text')
+        .attr('dy', '.35em')
+        .attr('x', d => d.children || d._children ? -14 : 14)
+        .attr('text-anchor', d => d.children || d._children ? 'end' : 'start')
+        .style("fill-opacity", 1e-6)
+        .call(wrapText, 380);
+
+      const nodeUpdate = nodeEnter.merge(node);
+      nodeUpdate.transition().duration(duration)
+        .attr('transform', d => `translate(${d.y},${d.x})`)
+        .attr('class', d => "node" + (d.children ? " node--internal" : " node--leaf") + (d._children ? " node--internal _children" : ""));
+
+      nodeUpdate.select('circle').attr('r', 8.5)
+        .style('fill', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            if (d._children) return palette.collapsedFill;
+            if (d.children) return palette.fill;
+            return "#fff";
+        })
+        .style('stroke', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            return palette.stroke;
+        });
+      nodeUpdate.select('text').style("fill-opacity", 1).call(wrapText, 380);
+
+      const nodeExit = node.exit().transition().duration(duration).attr('transform', d => `translate(${source.y},${source.x})`).remove();
+      nodeExit.select('circle').attr('r', 1e-6);
+      nodeExit.select('text').style('fill-opacity', 1e-6);
+
+      const link = g.selectAll('path.link').data(links, d => d.id);
+      const linkEnter = link.enter().insert('path', "g").attr('class', 'link').attr('d', d => { const o = { x: source.x0, y: source.y0 }; return diagonal(o, o); });
+
+      linkEnter.merge(link).transition().duration(duration).attr('d', d => diagonal(d, d.parent))
+        .style('stroke', d => {
+            const sourceNode = d.parent;
+            if (!sourceNode) return phaseColors.Default.stroke;
+            const l1AncestorName = sourceNode.data.originalStageName;
+            const colorPalette = phaseColors[l1AncestorName] || phaseColors.Default;
+            return colorPalette.stroke;
+        });
+      link.exit().transition().duration(duration).attr('d', d => { const o = { x: source.x, y: source.y }; return diagonal(o, o); }).remove();
+      nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+    }
+
+    function diagonal(s, d) { return `M ${s.y} ${s.x} C ${(s.y + d.y) / 2} ${s.x}, ${(s.y + d.y) / 2} ${d.x}, ${d.y} ${d.x}`; }
+
+    function wrapText(textElements, maxWidth) {
+        const textPartColors = {
+            name: '#343a40',
+            count: '#0056b3'
+        };
+        const countRegex = /(\s\(Total Count: \d+\))$/;
+
+        textElements.each(function () {
+            const textD3 = d3.select(this);
+            const originalNodeText = textD3.datum().data.name;
+            const x = parseFloat(textD3.attr("x") || 0);
+            const initialDy = textD3.attr("dy");
+            const textAnchor = textD3.attr("text-anchor");
+            const lineHeight = 1.1;
+
+            textD3.text(null);
+
+            let namePart = originalNodeText;
+            let countPartText = "";
+
+            const countMatch = originalNodeText.match(countRegex);
+            if (countMatch && originalNodeText.endsWith(countMatch[0])) {
+                namePart = originalNodeText.substring(0, originalNodeText.length - countMatch[0].length).trim();
+                countPartText = countMatch[0].trim();
+            }
+
+            const tokens = [];
+            namePart.split(/\s+/).filter(Boolean).forEach(word => {
+                tokens.push({ text: word, type: 'name' });
+            });
+            if (countPartText) {
+                tokens.push({ text: countPartText, type: 'count' });
+            }
+
+            if (tokens.length === 0 && originalNodeText) {
+                tokens.push({ text: originalNodeText, type: 'name' });
+            }
+
+            let currentTspan = textD3.append("tspan").attr("x", x).attr("dy", initialDy);
+            if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+
+            let lineTokens = [];
+
+            for (let i = 0; i < tokens.length; i++) {
+                const tokenObj = tokens[i];
+
+                lineTokens.push(tokenObj);
+                currentTspan.text(lineTokens.map(t => t.text).join(" "));
+
+                if (currentTspan.node().getComputedTextLength() > maxWidth && lineTokens.length > 1) {
+                    lineTokens.pop();
+
+                    currentTspan.text(null);
+                    lineTokens.forEach((prevToken, idx) => {
+                        currentTspan.append("tspan")
+                            .text((idx > 0 ? " " : "") + prevToken.text)
+                            .style("fill", textPartColors[prevToken.type] || textPartColors.name)
+                            .style("font-weight", prevToken.type === 'count' ? "bold" : "normal");
+                    });
+
+                    lineTokens = [tokenObj];
+                    currentTspan = textD3.append("tspan").attr("x", x).attr("dy", lineHeight + "em");
+                    if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+                }
+            }
+
+            currentTspan.text(null);
+            lineTokens.forEach((token, idx) => {
+                currentTspan.append("tspan")
+                    .text((idx > 0 ? " " : "") + token.text)
+                    .style("fill", textPartColors[token.type] || textPartColors.name)
+                    .style("font-weight", token.type === 'count' ? "bold" : "normal");
+            });
+
+            if (textD3.selectAll("tspan > tspan").empty() && textD3.select("tspan").text().length === 0 && originalNodeText) {
+                let t = textD3.select("tspan");
+                let displayText = originalNodeText;
+                t.text(displayText).style("fill", textPartColors.name);
+                if (t.node() && t.node().getComputedTextLength() > maxWidth && displayText.length > 20) {
+                    let estimatedChars = Math.floor(maxWidth / (t.node().getComputedTextLength()/displayText.length) );
+                    displayText = displayText.substring(0, Math.max(0, estimatedChars - 3)) + "...";
+                    t.text(displayText);
+                }
+            }
+        });
+    }
+  </script>
+</body>
+</html>

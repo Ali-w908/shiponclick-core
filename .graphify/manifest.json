@@ -1,0 +1,626 @@
+{
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/core.py": {
+    "mtime": 1788719013300.9116,
+    "hash": "1e51ce8efaf151a95106f37dc49cf032"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/design_system.py": {
+    "mtime": 1788719013307.4084,
+    "hash": "f11c3d748dadf0f1d030d7c119818daa"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/reasoning_contract.py": {
+    "mtime": 1788719013320.123,
+    "hash": "e03944fe11a921f4c13687774c97b09a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/search.py": {
+    "mtime": 1788719013324.1255,
+    "hash": "c7f298eae8d4f630a4fbe20c0d1d2c77"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py": {
+    "mtime": 1788719013335.4248,
+    "hash": "1068a876d6c669a8e8d3ac427c6d0dd0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_core.py": {
+    "mtime": 1788719013338.0322,
+    "hash": "2d94f15b1c12cf0b0e4993cacdb4f0ba"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_core_data_quality.py": {
+    "mtime": 1788719013336.5393,
+    "hash": "dd075aae5ec7d65b41d4e1fc730117ba"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_data_contracts.py": {
+    "mtime": 1788719013339.6274,
+    "hash": "d5d35046faca80fe1a48776ad385338d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_design_system_mode.py": {
+    "mtime": 1788719013340.6343,
+    "hash": "c23e05dfc7b1602ecc88866c37235c68"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py": {
+    "mtime": 1788719013341.6365,
+    "hash": "a68849787265953911e32e3a93968f7c"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py": {
+    "mtime": 1788719013342.6365,
+    "hash": "10a92a919a7780ebb6aada75eb7d0ed5"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py": {
+    "mtime": 1788719013346.4998,
+    "hash": "32c02df463685f41869a7bb9b8396574"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py": {
+    "mtime": 1788719013351.5273,
+    "hash": "d9ce97bf10c398e3ce0304334ba98bc2"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py": {
+    "mtime": 1788719013353.5293,
+    "hash": "e84ab0d880304d93dda6f06aac5bdaa3"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/scripts/validate_data.py": {
+    "mtime": 1788719013357.0505,
+    "hash": "393c4f769b3fd434a0916d125f48b038"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/eslint.config.mjs": {
+    "mtime": 1768661136248.4658,
+    "hash": "c0a105a53cd8611c3fc1f097f72e6db9"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/middleware.ts": {
+    "mtime": 1768737045567.2485,
+    "hash": "5d58035590ff7691dc0e5d73678985ab"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/next.config.ts": {
+    "mtime": 1789227124357.527,
+    "hash": "01440667eefb873d742121dc07e2ccf0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/playwright.config.ts": {
+    "mtime": 1789067396361.8896,
+    "hash": "d52481646bf471f6bb2c856a75944287"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/postcss.config.mjs": {
+    "mtime": 1768660943435.3987,
+    "hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/prisma/enable_rls.sql": {
+    "mtime": 1788288725866.75,
+    "hash": "c73646ba84b37fb4c854c1f4228e71c2"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/prisma/seed.ts": {
+    "mtime": 1768740896143.2405,
+    "hash": "5e33bd52b542fe8b718d66d2ce407761"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/build-open-core.js": {
+    "mtime": 1789125715673.168,
+    "hash": "a1009ef4ef25b535c9982c3f242b89ec"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/capture-screenshots.ts": {
+    "mtime": 1769264210238.9485,
+    "hash": "e7b468a7f9380df0f3a76c5be725c2e9"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/check-users.ts": {
+    "mtime": 1769187231489.7986,
+    "hash": "624ba7c08bdf8034c3cfa21b4d120691"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/debug-registration.ts": {
+    "mtime": 1769148922680.8694,
+    "hash": "a004281615502f14df36cc9a6f0b434a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/setup.js": {
+    "mtime": 1789299735980.8945,
+    "hash": "19f6ffeef3c4eff77d4895df65911152"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/test_ls.ts": {
+    "mtime": 1788290297635.5872,
+    "hash": "9c4df1ec019c249e4f1f4209614a2c2d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/scripts/wait-for-port.js": {
+    "mtime": 1769264127157.4136,
+    "hash": "3fbcce6a52a29efb98efa7cd5f3888ee"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/sentry.edge.config.ts": {
+    "mtime": 1789225807322.257,
+    "hash": "d29ac60f6ac7360cfe31900999abf970"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/sentry.server.config.ts": {
+    "mtime": 1789225807329.7676,
+    "hash": "372c268a00127a497d44be1f2aedd56a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/auth-actions.ts": {
+    "mtime": 1789056184486.0781,
+    "hash": "962039d3a6c9a87b9370a226b2d0e389"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/billing-actions.ts": {
+    "mtime": 1788289991325.4023,
+    "hash": "4b2eaede64406705cb12dae49dcfd77d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/feedback-actions.ts": {
+    "mtime": 1789219624047.711,
+    "hash": "eb0b5a19004273b5f14b81246c434e82"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/github-actions.ts": {
+    "mtime": 1789215169173.1975,
+    "hash": "7df4e8395eef49ead35fa860f0550bdd"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/org-actions.ts": {
+    "mtime": 1768749435701.618,
+    "hash": "f155a086084f784882e87530aa594829"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/actions/user-actions.ts": {
+    "mtime": 1768749843645.1753,
+    "hash": "4fb976804163eeb6dc489df9f87c2cfb"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(auth)/login/page.tsx": {
+    "mtime": 1789058083853.9822,
+    "hash": "8cd10da596e5914b5af9d5178993cb43"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(auth)/register/page.tsx": {
+    "mtime": 1787995086236.7827,
+    "hash": "c5c091cf709a16285a4b7d948fc3e889"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/dashboard/page.tsx": {
+    "mtime": 1789219758774.4158,
+    "hash": "9399aa1890af92533282ee63ab2ebaf1"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/knowledge-graph/page.tsx": {
+    "mtime": 1787740525440.8533,
+    "hash": "0a2124f6a150fd8b54fcd8015adfe0e7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/layout.tsx": {
+    "mtime": 1788807953272.4592,
+    "hash": "fd84f78d69d6fe5181e931499be37723"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/playground/page.tsx": {
+    "mtime": 1788808103248.0728,
+    "hash": "060446400c932ac5e7c33d2f26b6bfb7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/settings/billing/page.tsx": {
+    "mtime": 1789299445629.7798,
+    "hash": "4a63b682e6a0dcb253a3b637296982e7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/[orgId]/settings/page.tsx": {
+    "mtime": 1788808120825.8628,
+    "hash": "4412039010ee61234b5dee7090fd05c8"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/dashboard/page.tsx": {
+    "mtime": 1787995050488.3816,
+    "hash": "382d3320c26288abf1dbcd59fb0d5d06"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/layout.tsx": {
+    "mtime": 1788723311810.4639,
+    "hash": "97b51b1530938a06fbe2470e939e140f"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(dashboard)/settings/profile/page.tsx": {
+    "mtime": 1788808180806.5928,
+    "hash": "949c01b1a536d9c27583ba20158927a7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(marketing)/layout.tsx": {
+    "mtime": 1787773260080.3394,
+    "hash": "39b2720135fd3ce69e3368dd767b275a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(marketing)/page.tsx": {
+    "mtime": 1789214942295.9468,
+    "hash": "415b4265199f3419baf5152569110681"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(marketing)/pricing/page.tsx": {
+    "mtime": 1789299435016.5237,
+    "hash": "16b08d94669c5aff94c01a1d6430f30b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(marketing)/privacy/page.tsx": {
+    "mtime": 1789214812481.9382,
+    "hash": "67ccd82d53a4a887724e81f6eabaec79"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/(marketing)/terms/page.tsx": {
+    "mtime": 1789299421439.5156,
+    "hash": "203f6a96a4a5c200f19b30d70f8e7d8c"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/api/auth/[...nextauth]/route.ts": {
+    "mtime": 1768737545504.274,
+    "hash": "1051f45d24b0edf9dbb475cc47d8ce6a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/api/webhooks/github/route.ts": {
+    "mtime": 1789215188076.609,
+    "hash": "852b0f27995370277c2e3b4f3e2e25ad"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/api/webhooks/lemonsqueezy/route.ts": {
+    "mtime": 1787995223821.917,
+    "hash": "dd1f817a341eee69f07f94b130a3f13a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/api/webhooks/stripe/route.ts": {
+    "mtime": 1768746291718.2065,
+    "hash": "485ade17ab8ce38f4310e2f89c6eaf3d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/global-error.tsx": {
+    "mtime": 1789225807386.5967,
+    "hash": "51023eecc7d45ac08b0152770ff4971f"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/invite/[token]/page.tsx": {
+    "mtime": 1768749453999.1448,
+    "hash": "6f6e332bb1668023b31235444723be14"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/layout.tsx": {
+    "mtime": 1789215272923.591,
+    "hash": "1403bdc6f1e4b4a96a320bb2306d811b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/robots.ts": {
+    "mtime": 1768753581067.634,
+    "hash": "4d28f33aaa19a2ba4b06c063bbaf35be"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/app/sitemap.ts": {
+    "mtime": 1768753583047.3743,
+    "hash": "ca33341772f46d243a3c64caefdfb670"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/delete-account-button.tsx": {
+    "mtime": 1788617878096.007,
+    "hash": "3de32eb8307734bbf3d79cd25eec1578"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/github-connection-card.tsx": {
+    "mtime": 1789037329732.2515,
+    "hash": "93b8f358dd95dacd8ab200bcee50be62"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/invite-form.tsx": {
+    "mtime": 1768749963336.68,
+    "hash": "e52fa7e0fbb11f0285ddc23b3b81f122"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/knowledge-graph-viewer.tsx": {
+    "mtime": 1787740513706.4116,
+    "hash": "b1d000b8ce492a875f1e4b35cd033fd1"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/members-table.tsx": {
+    "mtime": 1768749964993.4575,
+    "hash": "1f59daf776682acc45fb4b9655eb5706"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/new-project-modal.tsx": {
+    "mtime": 1789037260430.3313,
+    "hash": "d2f78f83120f16dca093187ff4b8baa2"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/overview.tsx": {
+    "mtime": 1768749662398.7375,
+    "hash": "fff80878adb0eb00496b0fe7a3201edc"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/profile-form.tsx": {
+    "mtime": 1768749720384.637,
+    "hash": "b7b8285a08eba11075ff396608d7d7d0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/projects-dashboard.tsx": {
+    "mtime": 1788723365281.0232,
+    "hash": "94737e4fea1e48dfe9db8900c1ea5e89"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/sidebar.tsx": {
+    "mtime": 1788807932128.3745,
+    "hash": "e4177ba09ae141db9bfe894a46b13204"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/dashboard/stack-explorer.tsx": {
+    "mtime": 1789215140376.6494,
+    "hash": "2eb151b084ee066734262f91d4f4286d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/agents-showcase.tsx": {
+    "mtime": 1789214973567.5156,
+    "hash": "e79f6e42c8d29f4a3c79e17183501543"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/codebase-explorer.tsx": {
+    "mtime": 1789214906731.1477,
+    "hash": "bf7bd51adbd709f7311fee9b81ce42a0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/faq.tsx": {
+    "mtime": 1789299380625.4934,
+    "hash": "4802cec8486f60b9c5830601d2f870c8"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/features.tsx": {
+    "mtime": 1788723719578.8535,
+    "hash": "c3d453576746f65c8d55280404b7983c"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/final-cta.tsx": {
+    "mtime": 1788723083402.271,
+    "hash": "4cf650108cf4a197beedaeeadbc0e182"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/footer.tsx": {
+    "mtime": 1789299396658.7217,
+    "hash": "71d8980e55d6121daa95d44389e65ec7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/hero.tsx": {
+    "mtime": 1788723016004.8225,
+    "hash": "939b582413875a76561a6046b4c5bd00"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/how-it-works.tsx": {
+    "mtime": 1788723143534.1418,
+    "hash": "71f4144caa43c08204c1e17a0a5ca92c"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/navbar.tsx": {
+    "mtime": 1788722977146.146,
+    "hash": "7afe3641c100bcd79c13365aa7433384"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/pricing-card.tsx": {
+    "mtime": 1789215002275.579,
+    "hash": "430ba73cf7f65ad85326eda9014293a8"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/social-proof.tsx": {
+    "mtime": 1788723018029.885,
+    "hash": "4a88cbb88bf320408f8ce6a7177e83c5"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/tech-stack.tsx": {
+    "mtime": 1788723151083.9976,
+    "hash": "3f5196428746f0da02b998093d8816b0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/testing-suite.tsx": {
+    "mtime": 1789215336112.0625,
+    "hash": "1440f70171e8ee5ea90df222d860f55a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/marketing/value-proposition.tsx": {
+    "mtime": 1788723020061.0193,
+    "hash": "086ba2104f807286421768bb3280d780"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/providers.tsx": {
+    "mtime": 1768752459390.4087,
+    "hash": "2ee8f91591a17c1b6c626a865a3eeae4"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/button.tsx": {
+    "mtime": 1768752313373.1707,
+    "hash": "73d23951bf44116e75f02c45b8eb41a0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/card.tsx": {
+    "mtime": 1788723437961.4336,
+    "hash": "50ad36af2b72b85f9b08cdbdbf8808c0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/feedback-widget.tsx": {
+    "mtime": 1789215245217.829,
+    "hash": "3fc86fb60ed4c2ce6179e627b85eebe6"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/login-form.tsx": {
+    "mtime": 1788723257918.2188,
+    "hash": "78e1c4301df2926a1a984cb618423bb4"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/logo.tsx": {
+    "mtime": 1788722947733.8604,
+    "hash": "99696abab08553a76eead4671d70f454"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/components/ui/register-form.tsx": {
+    "mtime": 1788723260002.3462,
+    "hash": "fcb3f0a6d6a2a9a21633747aff32ad1b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/config/metadata.ts": {
+    "mtime": 1787772994274.4087,
+    "hash": "531cefd7ed9a81aeadc24fda0fdda5ec"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/instrumentation-client.ts": {
+    "mtime": 1789227147285.7158,
+    "hash": "4ef2ed1440cd4c69766384705223ae72"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/instrumentation.ts": {
+    "mtime": 1789225807452.0679,
+    "hash": "c6e638555d4cacff8536b8657f9ded33"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/auth-types.ts": {
+    "mtime": 1768737053724.9438,
+    "hash": "d19d8bdc63202c045d20d29d8aa873e5"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/auth.config.ts": {
+    "mtime": 1788288639788.3276,
+    "hash": "9c9e6d828b30dded73043e1cf334ea9b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/auth.ts": {
+    "mtime": 1789037184350.734,
+    "hash": "b74d51fff8d0e7829b29ac1f067cf396"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/db.ts": {
+    "mtime": 1768662160127.812,
+    "hash": "4b5c1bb4961d165604bd2e3e85f055df"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/email.ts": {
+    "mtime": 1768749363588.2334,
+    "hash": "20dc40116456874d0896229132e9c63e"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/github.ts": {
+    "mtime": 1788329039185.482,
+    "hash": "e0e525b83915326449b7379700bf2bf1"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/lemonsqueezy.ts": {
+    "mtime": 1789299454857.9832,
+    "hash": "c9867f8105124481c12d9adafc57dde2"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/stripe.ts": {
+    "mtime": 1768746255170.0789,
+    "hash": "8b17d749f73e1abba34fedc5d23740a6"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/subscription.ts": {
+    "mtime": 1789215089929.9673,
+    "hash": "efe19e0387cbf6cd3cb4a4c7fcf140d3"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/lib/utils.ts": {
+    "mtime": 1768661235492.6284,
+    "hash": "322785e91209f8842f81c1cdf04b1d30"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/src/types/index.ts": {
+    "mtime": 1768737856875.1848,
+    "hash": "780220e73c6db01338aa0faae0c3a4d9"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/auth.setup.ts": {
+    "mtime": 1789067189952.4644,
+    "hash": "5b03014fd86c8d46ffbbbb015b1e4502"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/auth.spec.ts": {
+    "mtime": 1789067652210.9944,
+    "hash": "7b7a9ba0c636c4c61fd1ae29a8b37354"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/billing.spec.ts": {
+    "mtime": 1789067804934.0962,
+    "hash": "af83dc3350456135cbf2fefa7696c255"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/capture-screenshots.spec.ts": {
+    "mtime": 1789066626788.6328,
+    "hash": "213ad8b06adfd1cbee2db34a347198c2"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/dashboard.spec.ts": {
+    "mtime": 1789067821286.7266,
+    "hash": "1f6e1f2a9b20ea000d39565b5d65d826"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/feedback-loop.spec.ts": {
+    "mtime": 1789215306495.4507,
+    "hash": "23b21c13d5456fa1862c0a952cebef1d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/github-invite.spec.ts": {
+    "mtime": 1789215294099.3428,
+    "hash": "ec95d147cdab6de653ceaf2454b64432"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/e2e/mobile.spec.ts": {
+    "mtime": 1789067910111.531,
+    "hash": "e20cede624209a3ef737a0177ccfada4"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/factories/index.ts": {
+    "mtime": 1768829985847.1216,
+    "hash": "88d3a6bafb23189339e537216f4aef98"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/fixtures/index.ts": {
+    "mtime": 1768829989581.7285,
+    "hash": "2557ccc904c6d849e9b765711cd9a61d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/integration/actions/auth.test.ts": {
+    "mtime": 1788326881060.2485,
+    "hash": "f4ea1bd9a6ca0388f11ac1e03a5f9135"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/integration/actions/org.test.ts": {
+    "mtime": 1768830178644.2314,
+    "hash": "97938b714d1a9ade32aefbc4b4aea1ea"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/integration/webhooks/stripe.test.ts": {
+    "mtime": 1768831237532.3843,
+    "hash": "d6c8c991fb6a886e762de7badfc3c3a5"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/mocks/auth.ts": {
+    "mtime": 1768829925702.1233,
+    "hash": "a6719c3f5c8c13bbeae227129e3d7875"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/mocks/index.ts": {
+    "mtime": 1768829991588.2207,
+    "hash": "2f7e4742763943537f0e50896ba7ae94"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/mocks/prisma.ts": {
+    "mtime": 1788326976189.674,
+    "hash": "e42d405627aa2c77619624926087acd3"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/mocks/stripe.ts": {
+    "mtime": 1768829927113.7676,
+    "hash": "5b53e89f6d5bea6f5a138d23318e8b15"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/security/authorization.test.ts": {
+    "mtime": 1788326572410.716,
+    "hash": "05d116635bb9af162dd714d1e8bc5ff7"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/security/input-validation.test.ts": {
+    "mtime": 1788327125529.6133,
+    "hash": "c625e63af50284c046107d97451086df"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/setup.ts": {
+    "mtime": 1788326921805.5298,
+    "hash": "9f992899e566bb62a529cad737e47105"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/unit/auth/validation.test.ts": {
+    "mtime": 1768830102254.605,
+    "hash": "f7c578ec4abb723616dd98d3e4aba2a0"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/unit/lib/email.test.ts": {
+    "mtime": 1788327094773.6858,
+    "hash": "19070d2c48bbf34ddeda78e21873c773"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/unit/lib/subscription.test.ts": {
+    "mtime": 1789056221097.8186,
+    "hash": "94d7ba7fa885b610ed75e2fd1f3a0268"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/unit/lib/utils.test.ts": {
+    "mtime": 1768830044276.4514,
+    "hash": "102cd7cd5a099c3c0422f9ea5e4be9b1"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/tests/unit/webhooks/helpers.test.ts": {
+    "mtime": 1768830103822.4136,
+    "hash": "d735eb1f518675998ac7f3b2f19bca5d"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/vitest.config.ts": {
+    "mtime": 1788327174355.5588,
+    "hash": "b700b3aa5737af82cfe2745f299820c3"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/AGENTS.md": {
+    "mtime": 1789299262534.1562,
+    "hash": "b07c0e57f565cbb713e7a4b163d12e3a"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/design-system/SKILL.md": {
+    "mtime": 1787772913975.76,
+    "hash": "e4eb069e69e289a254bc48579884b321"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.agents/skills/ui-ux-pro-max/SKILL.md": {
+    "mtime": 1788719022266.3115,
+    "hash": "b8cabc19593a8a72ea15d7b2f1eba39f"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/.github/workflows/test.yml": {
+    "mtime": 1789064554605.4949,
+    "hash": "55121021feeee7997782692b87f4bb0b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/README.md": {
+    "mtime": 1788809228721.1394,
+    "hash": "e94a6eb8bd728e2438914c6c4f609425"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/docs/CHANGELOG.md": {
+    "mtime": 1789299221694.9038,
+    "hash": "9b9098654f486197269cc9631a596913"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/docs/FAQ.md": {
+    "mtime": 1789299203384.2769,
+    "hash": "5f2ef05f799d25bb4089a3950f1f4b0b"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/playwright-report/index.html": {
+    "mtime": 1789067978828.1536,
+    "hash": "b7fee9aee82f7c1041c01231e63e1d14"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/graph.html": {
+    "mtime": 1787740166000.8682,
+    "hash": "9456911710aa31100869a98e93dd2502"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/app-ui.png": {
+    "mtime": 1789067958258.8948,
+    "hash": "1c21192fb583366682d97e671214aae6"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/dashboard.png": {
+    "mtime": 1789067958120.957,
+    "hash": "b5b609bed26fdd3d8c94f21eaca9564f"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/hero-square.png": {
+    "mtime": 1769282165033.5796,
+    "hash": "2520dd4cc9c479ba36566b6f6f7d9cfe"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/hero.png": {
+    "mtime": 1789067955073.8674,
+    "hash": "5397d044a78e8d0c0f53cd06d1f2386e"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/hero1.png": {
+    "mtime": 1769264218428.5657,
+    "hash": "fb0d81807c5d42496065040af729eee5"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/login.png": {
+    "mtime": 1789067957573.3528,
+    "hash": "dee14d2d07bd95072132864d66ad42ca"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/mobile.png": {
+    "mtime": 1789067967055.0354,
+    "hash": "f7c383465f13a6c1bdeb134c0c069552"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/assets/pricing.png": {
+    "mtime": 1789067955748.9026,
+    "hash": "b15464a6ef3ffc1cc22f9b1b695cda2f"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/file.svg": {
+    "mtime": 1768660943441.305,
+    "hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/globe.svg": {
+    "mtime": 1768660943451.275,
+    "hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/next.svg": {
+    "mtime": 1768660943461.8901,
+    "hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/vercel.svg": {
+    "mtime": 1768660943469.6035,
+    "hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "D:/SoftwareForSale/Next_js-SaaS-Starter-Kit/app/public/window.svg": {
+    "mtime": 1768660943476.7273,
+    "hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}
