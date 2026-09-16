@@ -50,3 +50,10 @@ graphify-out/
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Internal Utility Scripts (Not shipped to customers)
+/scripts/build-open-core.js
+/scripts/capture-screenshots.ts
+/scripts/check-users.ts
+/scripts/debug-registration.ts
+/scripts/test_ls.ts
