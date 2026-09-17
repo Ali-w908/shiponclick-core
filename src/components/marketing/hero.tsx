@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const commands = [
-    { text: 'npx create-shiponclick my-saas', type: 'cmd' },
-    { text: '✔ Installing dependencies...', type: 'output', delay: 800 },
-    { text: '✔ Generating database schema...', type: 'output', delay: 1500 },
-    { text: '✔ Configuring LemonSqueezy payments...', type: 'output', delay: 2000 },
-    { text: '✔ Setting up NextAuth (Google/GitHub)...', type: 'output', delay: 2500 },
-    { text: 'Success! Your SaaS is ready.', type: 'success', delay: 3200 },
-    { text: 'cd my-saas && npm run dev', type: 'cmd', delay: 4000 },
+    { text: 'git clone https://github.com/Ali-w908/nextjs-saas-starter-kit.git my-saas', type: 'cmd' },
+    { text: 'cd my-saas && npm install', type: 'cmd', delay: 800 },
+    { text: '✔ Dependencies installed...', type: 'output', delay: 2000 },
+    { text: 'npm run setup', type: 'cmd', delay: 2800 },
+    { text: '✔ Environment variables configured...', type: 'output', delay: 3500 },
+    { text: '✔ Database schema generated...', type: 'output', delay: 4000 },
+    { text: 'Success! Your SaaS is ready.', type: 'success', delay: 4800 },
+    { text: 'npm run dev', type: 'cmd', delay: 5500 },
 ];
 
 export function Hero() {
