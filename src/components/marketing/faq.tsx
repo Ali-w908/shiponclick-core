@@ -21,7 +21,7 @@ const faqs = [
     },
     {
         question: "What support is included?",
-        answer: "You get best-effort support for bugs and critical issues related to the starter kit infrastructure. Reach out anytime at support@shiponclick.tech."
+        answer: "You get best-effort support for bugs and critical issues related to the starter kit infrastructure. Reach out anytime at support@shiponclick.tech. You can also use the green feedback button at the bottom right of the screen at any time to instantly submit bug reports or feature requests directly to our dashboard."
     }
 ];
 

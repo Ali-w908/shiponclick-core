@@ -40,10 +40,9 @@ export function Hero() {
     }, []);
 
     return (
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        <section className="relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
             {/* Background elements */}
             <div className="absolute inset-0 dot-grid-bg opacity-40" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50" />
             
             <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-3xl text-center">
@@ -52,9 +51,9 @@ export function Hero() {
                             ShipOnClick 2.0 is live
                         </span>
                     </div>
-                    <h1 className="animate-fade-in-up delay-100 text-4xl font-bold tracking-tight text-white sm:text-6xl font-heading leading-tight">
-                        Ship your SaaS before <br className="hidden sm:block"/>
-                        <span className="gradient-text-emerald">the idea gets cold.</span>
+                    <h1 className="animate-fade-in-up delay-100 text-4xl font-bold tracking-tight text-white sm:text-5xl font-heading leading-tight max-w-4xl mx-auto">
+                        Ship your SaaS before your <br className="hidden md:block" />
+                        AI's <span className="gradient-text-emerald">daily rate limit.</span>
                     </h1>
                     <p className="animate-fade-in-up delay-200 mt-6 text-lg leading-8 text-zinc-400 max-w-2xl mx-auto">
                         Cut 400+ hours of setup. Your AI agent understands the entire codebase from prompt one, 

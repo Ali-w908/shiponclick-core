@@ -2,39 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-const comparisons = [
-    {
-        category: "Time to First Customer",
-        without: "2-3 months building boilerplate",
-        with: "Under 5 minutes to local dev",
-        icon: (
-            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        )
-    },
-    {
-        category: "AI Codebase Onboarding",
-        without: "Burn 50K+ tokens exploring files",
-        with: "Zero waste. Pre-built AGENTS.md graph",
-        icon: (
-            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-        )
-    },
-    {
-        category: "Ecosystem & Lock-in",
-        without: "Proprietary SDKs, per-MAU hidden fees",
-        with: "Own the code. Standard Next.js + Prisma",
-        icon: (
-            <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-            </svg>
-        )
-    }
-];
-
 export function ValueProposition() {
     const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -54,49 +21,68 @@ export function ValueProposition() {
     }, []);
 
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-32 relative overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center scroll-reveal mb-16">
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-heading">
+                <div className="max-w-2xl scroll-reveal mb-20">
+                    <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl font-heading">
                         Why ShipOnClick?
                     </h2>
-                    <p className="mt-4 text-lg text-zinc-400">
-                        Stop rebuilding authentication, billing, and dashboards for every project.
+                    <p className="mt-6 text-xl text-zinc-400 leading-relaxed">
+                        We didn't just build another boilerplate. We engineered a robust, agent-ready ecosystem designed for the AI era.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-stagger">
-                    {comparisons.map((item, i) => (
-                        <div key={i} className="glass-card p-8 relative overflow-hidden group">
-                            {/* Subtle hover gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
-                            <div className="h-12 w-12 rounded-xl bg-surface-elevated border border-border-muted flex items-center justify-center mb-6">
-                                {item.icon}
-                            </div>
-                            
-                            <h3 className="text-xl font-bold text-white mb-6 font-heading">{item.category}</h3>
-                            
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <div className="mt-1 flex-shrink-0 text-destructive">
-                                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </div>
-                                    <p className="text-sm text-zinc-500">{item.without}</p>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="mt-1 flex-shrink-0 text-primary">
-                                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <p className="text-sm font-medium text-zinc-200">{item.with}</p>
-                                </div>
-                            </div>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 scroll-stagger">
+                    
+                    {/* Feature 1: Wide Card (Asymmetric Layout) */}
+                    <div className="glass-card p-10 md:col-span-8 flex flex-col justify-between min-h-[320px] relative overflow-hidden group">
+                        {/* Elegant hover sheen instead of bounce */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                        
+                        <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-surface-elevated border border-white/10 flex items-center justify-center relative z-10 mb-8">
+                            <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
                         </div>
-                    ))}
+
+                        <div className="relative z-10">
+                            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">AI-Native Architecture</h3>
+                            <p className="text-lg text-zinc-400 max-w-xl">
+                                Built explicitly for AI coding agents. Includes a highly structured AGENTS.md knowledge graph and curated Alibaba Open Code Review skills. Your agent can immediately add features without hallucinating.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Feature 2: Square Card */}
+                    <div className="glass-card p-10 md:col-span-4 flex flex-col justify-between min-h-[320px]">
+                        <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-surface-elevated border border-white/10 flex items-center justify-center mb-8">
+                            <svg className="w-7 h-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">Bulletproof Reliability</h3>
+                            <p className="text-base text-zinc-400">
+                                190+ automated E2E and Unit tests built-in, plus pre-configured Sentry error tracking. Real enterprise stability on day one.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Feature 3: Full Width Banner-style Card */}
+                    <div className="glass-card p-10 md:col-span-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+                        <div className="max-w-2xl">
+                            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">Frictionless "One-Click" Delivery</h3>
+                            <p className="text-lg text-zinc-400">
+                                The only boilerplate utilizing an automated, OAuth-secured GitHub fulfillment pipeline. Buyers get immediate, typo-free repository access right from their dashboard.
+                            </p>
+                        </div>
+                        <div className="flex-shrink-0 h-16 w-16 rounded-2xl bg-surface-elevated border border-white/10 flex items-center justify-center">
+                            <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

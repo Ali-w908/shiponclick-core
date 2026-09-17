@@ -213,7 +213,7 @@ export function CodebaseExplorer() {
                                 <div className="terminal-dot terminal-dot-green" />
                                 <div className="ml-4 text-xs text-zinc-500 font-sans">Explorer</div>
                             </div>
-                            <div className="p-6 bg-[#0A0F1C] min-h-[420px] overflow-x-auto">
+                            <div className="p-6 bg-black/40 backdrop-blur-xl min-h-[420px] overflow-x-auto">
                                 <TreeItem node={fileSystem[0]} defaultOpen={true} />
                             </div>
                         </div>

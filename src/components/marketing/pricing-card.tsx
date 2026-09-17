@@ -83,7 +83,7 @@ export function PricingCard({ showFree = false }: { showFree?: boolean }) {
                             'Auth.js v5 + Prisma + PostgreSQL',
                             'LemonSqueezy Subscriptions & Webhooks',
                             'Agentic Features (AGENTS.md, Graph)',
-                            '131+ Automated Tests (E2E/Unit)',
+                            '190+ Automated Tests (E2E/Unit)',
                             'Built-in User Feedback Loop',
                             'Dashboard & B2B Multi-tenancy',
                             'One-Click Setup CLI',
