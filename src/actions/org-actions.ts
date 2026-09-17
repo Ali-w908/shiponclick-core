@@ -46,6 +46,18 @@ export async function inviteUser(prevState: any, formData: FormData) {
 
         if (!org) return { error: 'Organization not found' };
 
+        // Enforce 5-member limit
+        const memberCount = await prisma.member.count({
+            where: { organizationId: orgId }
+        });
+        const inviteCount = await prisma.invite.count({
+            where: { organizationId: orgId }
+        });
+
+        if (memberCount + inviteCount >= 5) {
+            return { error: 'Team limit reached. The Builder plan supports up to 5 team members.' };
+        }
+
         // Check if user is already a member
         const existingUser = await prisma.user.findUnique({
             where: { email },

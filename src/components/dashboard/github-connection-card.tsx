@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { updateGithubUsername } from '@/actions/github-actions';
+import { claimGithubRepository } from '@/app/actions/github';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 function GithubIcon({ className }: { className?: string }) {
     return (
@@ -12,39 +14,36 @@ function GithubIcon({ className }: { className?: string }) {
 }
 
 interface GithubConnectionCardProps {
-    initialUsername: string | null;
-    inviteStatus: string | null;
+    hasGithubOAuth: boolean;
+    orgId: string;
+    inviteClaimed: boolean;
 }
 
-export function GithubConnectionCard({ initialUsername, inviteStatus }: GithubConnectionCardProps) {
-    const [isEditing, setIsEditing] = useState(!initialUsername);
-    const [username, setUsername] = useState(initialUsername || '');
+export function GithubConnectionCard({ hasGithubOAuth, orgId, inviteClaimed }: GithubConnectionCardProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const router = useRouter();
 
-    const handleSave = async () => {
-        if (!username.trim()) {
-            setError('Please enter a GitHub username.');
-            return;
-        }
-
+    const handleClaim = async () => {
         setIsLoading(true);
         setError('');
         setSuccess('');
 
-        const result = await updateGithubUsername(username.trim());
-        
-        setIsLoading(false);
-
-        if (result.success) {
-            setSuccess('GitHub account linked successfully!');
-            setIsEditing(false);
-            // Hide success message after 3 seconds
-            setTimeout(() => setSuccess(''), 3000);
-        } else {
-            setError(result.error || 'Failed to update username.');
+        try {
+            await claimGithubRepository(orgId);
+            setSuccess('Success! The GitHub invite has been sent to your authenticated GitHub account. Check your email or GitHub notifications.');
+            router.refresh();
+        } catch (err: any) {
+            setError(err.message || 'Failed to claim repository. Please contact support.');
+        } finally {
+            setIsLoading(false);
         }
+    };
+
+    const handleConnect = async () => {
+        // Triggers the OAuth flow which links the GitHub account to the existing session
+        signIn('github');
     };
 
     return (
@@ -59,66 +58,59 @@ export function GithubConnectionCard({ initialUsername, inviteStatus }: GithubCo
                 
                 <div>
                     <h3 className="text-sm font-semibold text-zinc-100 flex items-center gap-2">
-                        GitHub Connection
-                        {initialUsername && !isEditing && (
+                        GitHub Access Fulfillment
+                        {inviteClaimed ? (
                             <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400 border border-emerald-500/20">
-                                Connected
+                                Claimed
                             </span>
-                        )}
-                        {!initialUsername && (
+                        ) : hasGithubOAuth ? (
                             <span className="inline-flex items-center rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400 border border-amber-500/20">
-                                Not Connected
+                                Action Required
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-medium text-red-400 border border-red-500/20">
+                                Connect GitHub
                             </span>
                         )}
                     </h3>
-                    <p className="text-sm text-zinc-400 mt-1">
-                        Link your GitHub account to access the private codebase.
+                    <p className="text-sm text-zinc-400 mt-1 max-w-md">
+                        {inviteClaimed 
+                            ? "Your GitHub access has been successfully fulfilled. Check your email for the invite link to the private repository."
+                            : hasGithubOAuth 
+                                ? "Your GitHub account is connected! Click below to send the private repository invite to your account."
+                                : "Link your GitHub account using OAuth to automatically receive an invite to the private boilerplate repository. No typos, guaranteed access."
+                        }
                     </p>
                 </div>
             </div>
 
-            <div className="flex items-center gap-3 w-full md:w-auto z-10">
-                {isEditing ? (
-                    <div className="flex items-center gap-2 w-full md:w-auto">
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="torvalds"
-                            className="w-full md:w-48 rounded-lg border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                        />
-                        <button
-                            onClick={handleSave}
-                            disabled={isLoading}
-                            className="btn-glow text-sm px-4 py-2 whitespace-nowrap disabled:opacity-50"
-                        >
-                            {isLoading ? 'Saving...' : 'Save'}
-                        </button>
-                        {initialUsername && (
-                            <button
-                                onClick={() => {
-                                    setUsername(initialUsername);
-                                    setIsEditing(false);
-                                    setError('');
-                                }}
-                                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                        )}
-                    </div>
-                ) : (
-                    <div className="flex items-center gap-4">
-                        <div className="text-sm text-zinc-300 font-mono bg-zinc-800/50 px-3 py-1.5 rounded-lg border border-zinc-700/50">
-                            @{initialUsername}
-                        </div>
-                        <button
-                            onClick={() => setIsEditing(true)}
-                            className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors font-medium"
-                        >
-                            Change
-                        </button>
-                    </div>
+            <div className="flex items-center gap-3 w-full md:w-auto z-10 mt-4 md:mt-0">
+                {!inviteClaimed && hasGithubOAuth && (
+                    <button
+                        onClick={handleClaim}
+                        disabled={isLoading}
+                        className="btn-glow text-sm px-5 py-2.5 whitespace-nowrap disabled:opacity-50"
+                    >
+                        {isLoading ? 'Claiming...' : 'Claim Repository Access'}
+                    </button>
+                )}
+                {!inviteClaimed && !hasGithubOAuth && (
+                    <button
+                        onClick={handleConnect}
+                        className="btn-glow text-sm px-5 py-2.5 whitespace-nowrap bg-zinc-100 text-zinc-900 hover:bg-zinc-200 border-transparent shadow-none"
+                    >
+                        Connect GitHub to Claim
+                    </button>
+                )}
+                {inviteClaimed && (
+                    <a
+                        href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_REPO_NAME || 'Ali-w908/nextjs-saas-starter-kit'}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                        Go to Repository ↗
+                    </a>
                 )}
             </div>
 

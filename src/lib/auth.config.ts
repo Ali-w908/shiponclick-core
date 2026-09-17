@@ -26,7 +26,8 @@ export const authConfig = {
             if (isLoggedIn) {
                 const isOnAuth = pathname === '/login' || pathname === '/register';
                 if (isOnAuth) {
-                    return Response.redirect(new URL('/dashboard', nextUrl));
+                    const isUpgrade = nextUrl.searchParams.get('upgrade') === 'true';
+                    return Response.redirect(new URL(isUpgrade ? '/dashboard?upgrade=true' : '/dashboard', nextUrl));
                 }
             }
 

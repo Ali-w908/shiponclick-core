@@ -36,10 +36,8 @@ const fileSystem: FSNode[] = [
                 name: 'tests',
                 type: 'folder',
                 children: [
-                    { name: 'e2e', type: 'folder', desc: 'Playwright end-to-end user flows (32+ tests)' },
+                    { name: 'e2e', type: 'folder', desc: 'Playwright end-to-end user flows (190+ tests)' },
                     { name: 'unit', type: 'folder', desc: 'Vitest unit tests for core logic' },
-                    { name: 'integration', type: 'folder', desc: 'Database and webhook integration tests' },
-                    { name: 'security', type: 'folder', desc: 'Input validation & RBAC security checks' },
                 ]
             },
             {
@@ -47,7 +45,14 @@ const fileSystem: FSNode[] = [
                 type: 'folder',
                 children: [
                     { name: 'AGENTS.md', type: 'file', desc: 'Complete codebase context for AI agents' },
-                    { name: 'skills', type: 'folder', desc: 'Curated workflow skills (e.g. ui-ux-pro-max)' },
+                    { name: 'skills', type: 'folder', desc: 'Curated workflow skills (Open Code Review)' },
+                ]
+            },
+            {
+                name: '.github',
+                type: 'folder',
+                children: [
+                    { name: 'workflows', type: 'folder', desc: 'CI/CD pipelines for testing and deployment' },
                 ]
             }
         ]
@@ -137,30 +142,100 @@ export function CodebaseExplorer() {
         return () => observerRef.current?.disconnect();
     }, []);
 
+    const premiumFeatures = [
+        {
+            title: 'Agentic Features & Skills',
+            desc: 'Built-in AGENTS.md and curated skills to streamline production—empowering your agent to handle rigorous code reviews, automated testing, and UI design.',
+            icon: (
+                <svg className="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+            )
+        },
+        {
+            title: '190+ Automated Tests',
+            desc: 'Comprehensive E2E (Playwright) and Unit (Vitest) test suites covering all core auth and billing flows.',
+            icon: (
+                <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            )
+        },
+        {
+            title: 'Built-in User Feedback Loop',
+            desc: 'Integrated feedback widget and dashboard to capture bugs and feature requests directly from your users in real-time.',
+            icon: (
+                <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                </svg>
+            )
+        },
+        {
+            title: 'CI/CD Pipeline',
+            desc: 'Pre-configured GitHub Actions for automated testing, linting, and Vercel deployments.',
+            icon: (
+                <svg className="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                </svg>
+            )
+        },
+        {
+            title: 'Sentry Error Tracking',
+            desc: 'Production-ready Sentry integration with source maps to catch bugs before your users do.',
+            icon: (
+                <svg className="w-5 h-5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            )
+        }
+    ];
+
     return (
         <section id="codebase" className="py-24 bg-background relative overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center scroll-reveal mb-12">
+                <div className="mx-auto max-w-2xl text-center scroll-reveal mb-16">
                     <span className="text-primary font-mono text-sm tracking-wider uppercase mb-2 block">Transparency</span>
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-heading">
                         Know exactly what you&apos;re getting.
                     </h2>
                     <p className="mt-4 text-lg text-zinc-400">
-                        No black boxes. Just clean, documented, AI-ready code.
+                        No black boxes. Just clean, documented, AI-ready code built for production.
                     </p>
                 </div>
 
-                <div className="mx-auto max-w-4xl scroll-reveal">
-                    <div className="terminal-window shadow-xl shadow-black/50 border-zinc-800">
-                        <div className="terminal-header bg-surface-elevated">
-                            <div className="terminal-dot terminal-dot-red" />
-                            <div className="terminal-dot terminal-dot-yellow" />
-                            <div className="terminal-dot terminal-dot-green" />
-                            <div className="ml-4 text-xs text-zinc-500 font-sans">Explorer</div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start scroll-reveal">
+                    {/* File Explorer Side */}
+                    <div className="lg:col-span-7">
+                        <div className="terminal-window shadow-xl shadow-black/50 border-zinc-800">
+                            <div className="terminal-header bg-surface-elevated">
+                                <div className="terminal-dot terminal-dot-red" />
+                                <div className="terminal-dot terminal-dot-yellow" />
+                                <div className="terminal-dot terminal-dot-green" />
+                                <div className="ml-4 text-xs text-zinc-500 font-sans">Explorer</div>
+                            </div>
+                            <div className="p-6 bg-[#0A0F1C] min-h-[420px] overflow-x-auto">
+                                <TreeItem node={fileSystem[0]} defaultOpen={true} />
+                            </div>
                         </div>
-                        <div className="p-6 bg-[#0A0F1C] min-h-[400px] overflow-x-auto">
-                            <TreeItem node={fileSystem[0]} defaultOpen={true} />
-                        </div>
+                    </div>
+
+                    {/* Features Side */}
+                    <div className="lg:col-span-5 flex flex-col justify-center h-full space-y-4">
+                        {premiumFeatures.map((feature, i) => (
+                            <div key={i} className="glass-card p-4 border border-zinc-800/50 bg-zinc-900/40 rounded-xl flex items-start gap-4 transition-all hover:bg-zinc-800/60 hover:border-zinc-700">
+                                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-surface rounded-full border border-border">
+                                    {feature.icon}
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-semibold text-zinc-100 font-heading">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="mt-1 text-sm text-zinc-400 leading-relaxed">
+                                        {feature.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

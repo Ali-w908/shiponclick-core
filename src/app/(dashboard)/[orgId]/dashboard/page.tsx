@@ -63,6 +63,10 @@ export default async function DashboardPage({
         select: { githubUsername: true, githubInviteStatus: true }
     });
 
+    const githubAccount = await prisma.account.findFirst({
+        where: { userId: session.user.id, provider: 'github' }
+    });
+
     // Get project count from localStorage is client-side, so we pass limits only
     const userName = session.user.name?.split(' ')[0] || 'there';
 
@@ -182,8 +186,9 @@ export default async function DashboardPage({
             {isActive && (
                 <div className="relative z-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                     <GithubConnectionCard 
-                        initialUsername={userDetails?.githubUsername || null} 
-                        inviteStatus={userDetails?.githubInviteStatus || null} 
+                        hasGithubOAuth={!!githubAccount}
+                        orgId={org.id}
+                        inviteClaimed={org.githubInviteClaimed}
                     />
                     <ProjectsDashboard
                         maxProjects={maxProjects}

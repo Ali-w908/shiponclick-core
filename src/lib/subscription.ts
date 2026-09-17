@@ -104,9 +104,9 @@ export const PRICING_PLANS = {
         features: [
             'Everything in Open Source, plus:',
             'LemonSqueezy Subscriptions & Webhooks',
-            'Agentic Features (AGENTS.md, Graph)',
-            '131+ Automated Tests (E2E/Unit)',
-            'Built-in User Feedback Loop',
+            'Agentic Features & Skills (Open Code Review)',
+            '190+ Automated Tests (E2E/Unit)',
+            'GitHub Actions CI/CD Pipeline',
             'Dashboard & B2B Multi-tenancy',
             'One-Click Setup CLI',
             'Lifetime updates'

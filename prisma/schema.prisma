@@ -135,6 +135,9 @@ model Organization {
   lsCurrentPeriodEnd DateTime? @map("ls_current_period_end")
   subscriptionStatus SubscriptionStatus? @map("subscription_status")
 
+  // GitHub Auto-Invite integration for boilerplate fulfillment
+  githubInviteClaimed Boolean @default(false) @map("github_invite_claimed")
+
   // Legacy Stripe fields (kept for migration compatibility)
   stripeCustomerId       String?   @unique @map("stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")

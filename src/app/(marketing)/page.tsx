@@ -1,5 +1,5 @@
 import { Hero } from '@/components/marketing/hero';
-import { SocialProof } from '@/components/marketing/social-proof';
+import { DemoVideo } from '@/components/marketing/demo-video';
 import { ValueProposition } from '@/components/marketing/value-proposition';
 import { CodebaseExplorer } from '@/components/marketing/codebase-explorer';
 import { TestingSuite } from '@/components/marketing/testing-suite';
@@ -10,11 +10,18 @@ import { TechStack } from '@/components/marketing/tech-stack';
 import { PricingCard } from '@/components/marketing/pricing-card';
 import { FAQ } from '@/components/marketing/faq';
 import { FinalCTA } from '@/components/marketing/final-cta';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'ShipOnClick | Next.js SaaS Starter Kit',
+    description: 'Stop paying monthly subscriptions for boilerplate. Own the code forever.',
+};
 
 export default function MarketingPage() {
     return (
         <div className="flex flex-col w-full">
             <Hero />
+            <DemoVideo />
             <ValueProposition />
             <CodebaseExplorer />
             <TestingSuite />

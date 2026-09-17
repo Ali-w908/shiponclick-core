@@ -8,7 +8,7 @@ import { UserRole } from '@prisma/client';
  * Looks up the current user's first organization and redirects to its dashboard.
  * If no org exists (edge case), creates one automatically.
  */
-export default async function DashboardRouter() {
+export default async function DashboardRouter({ searchParams }: { searchParams: { upgrade?: string } }) {
     const session = await auth();
 
     if (!session?.user?.id) {
@@ -22,8 +22,11 @@ export default async function DashboardRouter() {
         orderBy: { createdAt: 'asc' },
     });
 
+    const isUpgrade = searchParams.upgrade === 'true';
+    const suffix = isUpgrade ? '/settings/billing' : '/dashboard';
+
     if (membership?.organization) {
-        redirect(`/${membership.organization.slug}/dashboard`);
+        redirect(`/${membership.organization.slug}${suffix}`);
     }
 
     // Edge case: user exists but has no org (shouldn't happen with new registration flow)
@@ -66,5 +69,5 @@ export default async function DashboardRouter() {
         },
     });
 
-    redirect(`/${org.slug}/dashboard`);
+    redirect(`/${org.slug}${suffix}`);
 }

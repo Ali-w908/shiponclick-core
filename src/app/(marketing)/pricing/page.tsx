@@ -20,7 +20,7 @@ export default function PricingPage() {
 
                 {/* Pricing Cards */}
                 <div className="mt-16 flex justify-center">
-                    <PricingCard />
+                    <PricingCard showFree={true} />
                 </div>
 
                 {/* Bottom FAQ */}
