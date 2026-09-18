@@ -83,7 +83,7 @@ export async function createCheckout(orgId: string, variantId: string) {
             userEmail: ownerEmail,
             userName: ownerName || undefined,
             orgId: org.id,
-            successUrl: `${appUrl}/${org.slug}/settings/billing?success=true`,
+            successUrl: `${appUrl}/${org.slug}/dashboard?success=true`,
         });
 
         const checkoutUrl = (checkout as any)?.attributes?.url || (checkout as any)?.data?.attributes?.url;

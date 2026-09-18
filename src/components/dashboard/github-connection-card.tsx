@@ -31,7 +31,13 @@ export function GithubConnectionCard({ hasGithubOAuth, orgId, inviteClaimed }: G
         setSuccess('');
 
         try {
-            await claimGithubRepository(orgId);
+            const result = await claimGithubRepository(orgId);
+            
+            if (result && !result.success) {
+                setError(result.error || 'Failed to claim repository.');
+                return;
+            }
+            
             setSuccess('Success! The GitHub invite has been sent to your authenticated GitHub account. Check your email or GitHub notifications.');
             router.refresh();
         } catch (err: any) {

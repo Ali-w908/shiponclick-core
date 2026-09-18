@@ -1,18 +1,22 @@
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
-import { ProjectsDashboard } from '@/components/dashboard/projects-dashboard';
 import { GithubConnectionCard } from '@/components/dashboard/github-connection-card';
+import { CliInstructions } from '@/components/dashboard/cli-instructions';
 import { PRICING_PLANS } from '@/lib/subscription';
 import Link from 'next/link';
 
 export default async function DashboardPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ orgId: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const session = await auth();
     const { orgId } = await params;
+    const resolvedSearchParams = await searchParams;
+    const isSuccess = resolvedSearchParams.success === 'true';
 
     if (!session?.user?.id) {
         redirect('/login');
@@ -49,11 +53,9 @@ export default async function DashboardPage({
     const isActive = org.subscriptionStatus === 'ACTIVE' || org.subscriptionStatus === 'TRIALING';
 
     // Plan limits
-    let maxProjects = 0; // Free tier: no projects (use Stack Explorer instead)
     let canUseCliCommand = false;
     if (isActive && currentPlan) {
         if (currentPlan.name === 'Builder') {
-            maxProjects = Infinity;
             canUseCliCommand = true;
         }
     }
@@ -72,14 +74,24 @@ export default async function DashboardPage({
 
     return (
         <div className="flex-1 space-y-6">
+            {/* Success Banner */}
+            {isSuccess && !org.githubInviteClaimed && (
+                <div className="animate-fade-in mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-emerald-400">
+                        <SparklesIcon className="h-5 w-5" />
+                        <span className="text-sm font-medium">Purchase successful! Your Builder plan is now active. Claim your repository access below to get started.</span>
+                    </div>
+                </div>
+            )}
+
             {/* Welcome Section */}
-            <div className="animate-fade-in">
-                <h1 className="text-2xl font-bold text-foreground font-heading">
+            <div className="mb-12">
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground font-heading">
                     Welcome back, {userName}
                 </h1>
-                <p className="mt-1 text-sm text-text-muted">
+                <p className="mt-4 text-base md:text-lg text-text-muted max-w-2xl leading-relaxed">
                     {isActive
-                        ? `You're on the ${planName} plan with unlimited projects.`
+                        ? `You're on the ${planName} plan with full repository access.`
                         : 'You\'re on the free Explorer plan. Explore the stack, then upgrade to ship.'
                     }
                 </p>
@@ -119,9 +131,9 @@ export default async function DashboardPage({
                         <QuickAction
                             icon={<FolderPlusIcon className="h-5 w-5 text-primary" />}
                             iconBg="bg-primary/10 border-primary/20"
-                            title="New Project"
-                            description="Scaffold a new SaaS app"
-                            href={`/${orgId}/dashboard#new-project`}
+                            title="Overview"
+                            description="Setup instructions"
+                            href={`/${orgId}/dashboard`}
                         />
                         <QuickAction
                             icon={<SparklesIcon className="h-5 w-5 text-accent" />}
@@ -182,7 +194,7 @@ export default async function DashboardPage({
                 )}
             </div>
 
-            {/* Projects Dashboard (for paid users) */}
+            {/* GitHub Fulfillment and Onboarding (for paid users) */}
             {isActive && (
                 <div className="relative z-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                     <GithubConnectionCard 
@@ -190,14 +202,10 @@ export default async function DashboardPage({
                         orgId={org.id}
                         inviteClaimed={org.githubInviteClaimed}
                     />
-                    <ProjectsDashboard
-                        maxProjects={maxProjects}
-                        canUseCliCommand={canUseCliCommand}
-                        planName={planName}
-                        orgSlug={orgId}
-                        initialGithubUsername={userDetails?.githubUsername || null}
-                        githubInviteStatus={userDetails?.githubInviteStatus || null}
-                    />
+                    
+                    {org.githubInviteClaimed && canUseCliCommand && (
+                        <CliInstructions />
+                    )}
                 </div>
             )}
 

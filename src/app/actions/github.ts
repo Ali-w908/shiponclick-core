@@ -8,7 +8,7 @@ import { Octokit } from '@octokit/rest';
 export async function claimGithubRepository(orgId: string) {
     const session = await auth();
     if (!session?.user?.id) {
-        throw new Error('Unauthorized');
+        return { success: false, error: 'Unauthorized' };
     }
 
     // 1. Verify organization and membership
@@ -21,14 +21,14 @@ export async function claimGithubRepository(orgId: string) {
         }
     });
 
-    if (!org) throw new Error('Organization not found');
-    if (org.members.length === 0) throw new Error('You are not a member of this organization');
-    if (org.githubInviteClaimed) throw new Error('Repository access has already been claimed for this purchase');
+    if (!org) return { success: false, error: 'Organization not found' };
+    if (org.members.length === 0) return { success: false, error: 'You are not a member of this organization' };
+    if (org.githubInviteClaimed) return { success: false, error: 'Repository access has already been claimed for this purchase' };
 
     // 2. Verify active PRO subscription
     const hasAccess = await requireActiveSubscription(orgId);
     if (!hasAccess) {
-        throw new Error('An active Builder subscription is required');
+        return { success: false, error: 'An active Builder subscription is required' };
     }
 
     // 3. Find the user's connected GitHub account
@@ -40,7 +40,7 @@ export async function claimGithubRepository(orgId: string) {
     });
 
     if (!githubAccount || !githubAccount.providerAccountId) {
-        throw new Error('Please connect your GitHub account first');
+        return { success: false, error: 'Please connect your GitHub account first' };
     }
 
     const githubId = githubAccount.providerAccountId;
@@ -59,7 +59,7 @@ export async function claimGithubRepository(orgId: string) {
         });
 
         const repoString = process.env.GITHUB_REPO_NAME;
-        if (!repoString) throw new Error('GITHUB_REPO_NAME is not configured');
+        if (!repoString) return { success: false, error: 'GITHUB_REPO_NAME is not configured' };
         
         const [owner, repo] = repoString.split('/');
 
@@ -90,7 +90,17 @@ export async function claimGithubRepository(orgId: string) {
         return { success: true };
     } catch (error: any) {
         console.error('GitHub API Error:', error);
-        throw new Error('Failed to send GitHub invite. Please contact support.');
+        
+        // Handle specific Octokit errors safely
+        if (error.status === 401 || error.message?.includes('Bad credentials')) {
+            return { success: false, error: 'GitHub authentication failed. Ensure GITHUB_PAT is set properly in your environment variables.' };
+        }
+        
+        if (error.status === 404) {
+            return { success: false, error: 'Repository not found. Ensure GITHUB_REPO_NAME is correct and the PAT has access to it.' };
+        }
+        
+        return { success: false, error: error.message || 'Failed to send GitHub invite. Please contact support.' };
     }
 }
 
