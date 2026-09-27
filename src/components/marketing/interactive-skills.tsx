@@ -87,88 +87,88 @@ const SkillTerminal = ({ skill, output, windowClass }: { skill: string, output: 
                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                     <span className="ml-2 text-[11px] font-mono text-white/30 uppercase tracking-widest">{skill.replace('/', '')}.sh</span>
-                    </div>
-                        <div className="p-5 font-mono text-[13px] text-silver-mist text-left min-h-[110px] flex flex-col justify-center">
-                            <div className="text-white flex items-center">
-                                <span className="text-liquid-mist mr-2">$</span>
-                                <div className="overflow-hidden whitespace-nowrap transition-all duration-[500ms] w-0 group-hover:w-full">
-                                    <span className="inline-block border-r-2 border-white/50 pr-1">{skill.replace('/', '')}</span>
-                                </div>
-                            </div>
-                            <div className="mt-3 text-liquid-mist overflow-hidden whitespace-nowrap transition-all duration-[500ms] delay-[400ms] opacity-0 w-0 group-hover:opacity-100 group-hover:w-full">
-                                <div className="inline-block border-r-2 border-transparent pr-1">
-                                    <span className="text-white/40 mr-2">&gt;</span>{output}
-                                </div>
-                            </div>
+                </div>
+                <div className="p-5 font-mono text-[13px] text-silver-mist text-left min-h-[110px] flex flex-col justify-center">
+                    <div className="text-white flex items-center">
+                        <span className="text-liquid-mist mr-2">$</span>
+                        <div className="overflow-hidden whitespace-nowrap transition-all duration-[500ms] w-0 group-hover:w-full">
+                            <span className="inline-block border-r-2 border-white/50 pr-1">{skill.replace('/', '')}</span>
                         </div>
+                    </div>
+                    <div className="mt-3 text-liquid-mist overflow-hidden whitespace-nowrap transition-all duration-[500ms] delay-[400ms] opacity-0 w-0 group-hover:opacity-100 group-hover:w-full">
+                        <div className="inline-block border-r-2 border-transparent pr-1">
+                            <span className="text-white/40 mr-2">&gt;</span>{output}
+                        </div>
+                    </div>
                 </div>
             </div>
-            );
+        </div>
+    );
 };
 
-            export function InteractiveSkills() {
+export function InteractiveSkills() {
     return (
-            <div className="flex flex-col items-center">
-                {/* The Skill Words container - standard inline layout, no fixed height or shifting */}
-                <div className="flex flex-wrap justify-center gap-x-2">
+        <div className="flex flex-col items-center">
+            {/* The Skill Words container - standard inline layout, no fixed height or shifting */}
+            <div className="flex flex-wrap justify-center gap-x-2">
 
-                    {/* /onboard */}
-                    <span className="relative inline-block cursor-pointer whitespace-nowrap group">
-                        <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:-rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
-                            /improve-codebase-architecture
-                        </code>
-                        <SkillTerminal
-                            skill="/improve-codebase-architecture"
-                            output="Deepening opportunities found."
-                            windowClass="bottom-[80px] right-[20px] -rotate-6 origin-bottom-right"
-                        />
-                    </span>
+                {/* /onboard */}
+                <span className="relative inline-block cursor-pointer whitespace-nowrap group">
+                    <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:-rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
+                        /improve-codebase-architecture
+                    </code>
+                    <SkillTerminal
+                        skill="/improve-codebase-architecture"
+                        output="Deepening opportunities found."
+                        windowClass="bottom-[80px] right-[20px] -rotate-6 origin-bottom-right"
+                    />
+                </span>
 
-                    {' · '}
+                {' · '}
 
-                    {/* /sync-updates */}
-                    <span className="relative inline-block cursor-pointer whitespace-nowrap group">
-                        <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:-rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
-                            /sync-updates
-                        </code>
-                        <SkillTerminal
-                            skill="/sync-updates"
-                            output="3-way merge complete."
-                            windowClass="bottom-[140px] right-[-100px] -rotate-2 origin-bottom"
-                        />
-                    </span>
+                {/* /sync-updates */}
+                <span className="relative inline-block cursor-pointer whitespace-nowrap group">
+                    <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:-rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
+                        /sync-updates
+                    </code>
+                    <SkillTerminal
+                        skill="/sync-updates"
+                        output="3-way merge complete."
+                        windowClass="bottom-[140px] right-[-100px] -rotate-2 origin-bottom"
+                    />
+                </span>
 
-                    {' · '}
+                {' · '}
 
-                    {/* /add-feature */}
-                    <span className="relative inline-block cursor-pointer whitespace-nowrap group">
-                        <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
-                            /to-spec
-                        </code>
-                        <SkillTerminal
-                            skill="/to-spec"
-                            output="Spec generated and published."
-                            windowClass="bottom-[140px] left-[-100px] rotate-2 origin-bottom"
-                        />
-                    </span>
+                {/* /add-feature */}
+                <span className="relative inline-block cursor-pointer whitespace-nowrap group">
+                    <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
+                        /to-spec
+                    </code>
+                    <SkillTerminal
+                        skill="/to-spec"
+                        output="Spec generated and published."
+                        windowClass="bottom-[140px] left-[-100px] rotate-2 origin-bottom"
+                    />
+                </span>
 
-                    {' · '}
+                {' · '}
 
-                    {/* /ui-ux-pro-max */}
-                    <span className="relative inline-block cursor-pointer whitespace-nowrap group">
-                        <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
-                            /ui-ux-pro-max
-                        </code>
-                        <SkillTerminal
-                            skill="/ui-ux-pro-max"
-                            output="Premium design tokens applied."
-                            windowClass="bottom-[80px] left-[20px] rotate-6 origin-bottom-left"
-                        />
-                    </span>
+                {/* /ui-ux-pro-max */}
+                <span className="relative inline-block cursor-pointer whitespace-nowrap group">
+                    <code className="text-liquid-mist transition-all duration-200 group-hover:text-[#cbfffc] group-hover:rotate-2 group-hover:scale-110 inline-block bg-transparent group-hover:bg-white/10 px-1.5 py-0.5 rounded text-[13px] underline decoration-dashed decoration-white/30 underline-offset-4 group-hover:decoration-transparent">
+                        /ui-ux-pro-max
+                    </code>
+                    <SkillTerminal
+                        skill="/ui-ux-pro-max"
+                        output="Premium design tokens applied."
+                        windowClass="bottom-[80px] left-[20px] rotate-6 origin-bottom-left"
+                    />
+                </span>
 
-                </div>
-
-                <AdvancedSkillsTyping />
             </div>
-            );
+
+            <AdvancedSkillsTyping />
+        </div>
+    );
 }

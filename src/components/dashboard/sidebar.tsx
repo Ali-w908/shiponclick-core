@@ -85,7 +85,7 @@ function SidebarContent({ slug, isOwner, planName, onClose }: { slug: string; is
     const isFree = !planName || planName === 'Open Source';
 
     return (
-        <div className="flex h-full w-64 flex-col bg-background-deep border-r border-border-muted">
+        <div className="flex h-full w-[256px] flex-col bg-background-deep border-r border-border-muted">
             {/* Brand */}
             <div className="flex h-16 items-center justify-between px-5 border-b border-border-muted">
                 <Link href="/" className="flex items-center gap-2.5">
