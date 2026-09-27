@@ -1,4 +1,5 @@
 import { Octokit } from '@octokit/rest';
+import crypto from 'crypto';
 
 const getOctokit = () => {
     if (!process.env.GITHUB_PAT) {
@@ -47,4 +48,20 @@ export async function inviteUserToRepo(username: string) {
         
         return { success: false, error: error.message || 'Failed to send GitHub invitation' };
     }
+}
+
+/**
+ * Verifies the HMAC signature from a GitHub webhook request.
+ * Returns true if valid or if no secret is configured.
+ */
+export function verifyGithubSignature(payload: string, signature: string | null): boolean {
+    const secret = process.env.GITHUB_WEBHOOK_SECRET;
+    if (!secret || !signature) {
+        if (!secret) return true;
+        return false;
+    }
+
+    const hmac = crypto.createHmac('sha256', secret);
+    const digest = 'sha256=' + hmac.update(payload).digest('hex');
+    return signature === digest;
 }

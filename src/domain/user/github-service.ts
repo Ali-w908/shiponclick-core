@@ -73,4 +73,20 @@ export class GithubService {
 
         return { message: 'Invitation sent! Please check your email or GitHub notifications to accept it.' };
     }
+
+    /**
+     * Webhook handler for when a user accepts their GitHub repo invitation.
+     */
+    static async handleGithubMemberAdded(username: string) {
+        if (!username) return;
+
+        await prisma.user.updateMany({
+            where: { 
+                githubUsername: username,
+                githubInviteStatus: { in: ['PENDING', 'SENT'] }
+            },
+            data: { githubInviteStatus: 'ACCEPTED' }
+        });
+        console.log(`[GitHub Webhook] Marked invite as ACCEPTED for user: ${username}`);
+    }
 }
