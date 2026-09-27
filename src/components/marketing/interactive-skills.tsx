@@ -92,7 +92,7 @@ const SkillTerminal = ({ skill, output, windowClass }: { skill: string, output: 
                     <div className="text-white flex items-center">
                         <span className="text-liquid-mist mr-2">$</span> 
                         <div className="overflow-hidden whitespace-nowrap transition-all duration-[500ms] w-0 group-hover:w-full">
-                            <span className="inline-block border-r-2 border-white/50 pr-1">{skill}</span>
+                            <span className="inline-block border-r-2 border-white/50 pr-1">{skill.replace('/', '')}</span>
                         </div>
                     </div>
                     <div className="mt-3 text-liquid-mist overflow-hidden whitespace-nowrap transition-all duration-[500ms] delay-[400ms] opacity-0 w-0 group-hover:opacity-100 group-hover:w-full">
