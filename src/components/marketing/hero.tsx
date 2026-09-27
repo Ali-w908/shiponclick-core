@@ -1,108 +1,62 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-
-const commands = [
-    { text: 'git clone https://github.com/Ali-w908/nextjs-saas-starter-kit.git my-saas', type: 'cmd' },
-    { text: 'cd my-saas && npm install', type: 'cmd', delay: 800 },
-    { text: '✔ Dependencies installed...', type: 'output', delay: 2000 },
-    { text: 'npm run setup', type: 'cmd', delay: 2800 },
-    { text: '✔ Environment variables configured...', type: 'output', delay: 3500 },
-    { text: '✔ Database schema generated...', type: 'output', delay: 4000 },
-    { text: 'Success! Your SaaS is ready.', type: 'success', delay: 4800 },
-    { text: 'npm run dev', type: 'cmd', delay: 5500 },
-];
+import { InteractiveSkills } from './interactive-skills';
 
 export function Hero() {
-    const [lines, setLines] = useState<typeof commands>([]);
-    
-    useEffect(() => {
-        let isMounted = true;
-        
-        const runTerminal = async () => {
-            if (!isMounted) return;
-            setLines([]);
-            
-            for (const cmd of commands) {
-                await new Promise(r => setTimeout(r, cmd.delay || 0));
-                if (!isMounted) return;
-                setLines(prev => [...prev, cmd]);
-            }
-        };
-
-        // Delay start slightly
-        setTimeout(runTerminal, 500);
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-
     return (
-        <section className="relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute inset-0 dot-grid-bg opacity-40" />
-            
-            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-3xl text-center">
-                    <div className="animate-fade-in-up">
-                        <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary ring-1 ring-inset ring-primary/20 mb-8">
-                            ShipOnClick 2.0 is live
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0, 130, 124, 0.12) 0%, transparent 70%)',
+                    }}
+                />
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-[1440px] px-6 lg:px-10 w-full">
+                <div className="mx-auto max-w-4xl text-center flex flex-col items-center pt-24">
+
+                    <div className="animate-fade-in-up mb-10">
+                        <span className="text-[12px] font-normal uppercase tracking-[0.15em] text-silver-mist">
+                            The AI-Agent Optimized SaaS Starter Kit
                         </span>
                     </div>
-                    <h1 className="animate-fade-in-up delay-100 text-4xl font-bold tracking-tight text-white sm:text-5xl font-heading leading-tight max-w-4xl mx-auto">
-                        Ship your SaaS before your <br className="hidden md:block" />
-                        AI's <span className="gradient-text-emerald">daily rate limit.</span>
+
+                    <h1 className="animate-fade-in-up delay-100 text-[48px] md:text-[72px] lg:text-[86px] font-medium tracking-[-0.04em] text-white leading-[1] mb-8">
+                        Ship accurately,{' '}
+                        <br className="hidden md:block" />
+                        on a click.
                     </h1>
-                    <p className="animate-fade-in-up delay-200 mt-6 text-lg leading-8 text-zinc-400 max-w-2xl mx-auto">
-                        Cut 400+ hours of setup. Your AI agent understands the entire codebase from prompt one, 
-                        with token-efficient onboarding, AI-powered brand design, and automated launch planning. 
-                        Zero vendor lock-in, infinite scalability.
+
+                    <p className="animate-fade-in-up delay-200 text-[16px] leading-[1.5] text-silver-mist max-w-[540px] mx-auto mb-10">
+                        The SaaS Starter Kit that makes your AI Agent self-reliant, so you can
+                        ship the actual vision you have for your SaaS accurately — without
+                        drifting away.
                     </p>
-                    <div className="animate-fade-in-up delay-300 mt-10 flex items-center justify-center gap-x-6">
+
+                    <div className="animate-fade-in-up delay-200 w-full mb-16">
+                        <InteractiveSkills />
+                    </div>
+
+                    {/* CTA */}
+                    <div className="animate-fade-in-up delay-300 flex flex-col items-center gap-6 relative z-10">
                         <Link
                             href="/pricing"
-                            className="btn-primary text-base px-8 py-3.5"
+                            className="inline-flex items-center justify-center rounded-[6px] px-7 py-3.5 text-[14px] font-medium text-[#0a1a18] transition-all duration-200 hover:opacity-90 active:scale-95 bg-aurora-gradient"
                         >
                             Get ShipOnClick — $149
                         </Link>
-                        <Link
-                            href="#codebase"
-                            className="text-sm font-semibold leading-6 text-white hover:text-primary transition-colors flex items-center gap-2"
-                        >
-                            Explore the codebase <span aria-hidden="true">↓</span>
-                        </Link>
-                    </div>
-                </div>
 
-                {/* Terminal Window */}
-                <div className="animate-fade-in-up delay-500 mx-auto mt-20 max-w-3xl">
-                    <div className="terminal-window shadow-2xl shadow-primary/10">
-                        <div className="terminal-header">
-                            <div className="terminal-dot terminal-dot-red" />
-                            <div className="terminal-dot terminal-dot-yellow" />
-                            <div className="terminal-dot terminal-dot-green" />
-                            <div className="ml-4 text-xs text-zinc-500 font-sans">bash — ship-on-click</div>
-                        </div>
-                        <div className="terminal-body min-h-[220px]">
-                            {lines.map((line, i) => (
-                                <div key={i} className="mb-1.5 flex gap-3">
-                                    {line.type === 'cmd' && <span className="text-primary opacity-80">➜</span>}
-                                    <span className={
-                                        line.type === 'cmd' ? 'text-zinc-200' :
-                                        line.type === 'success' ? 'text-primary font-medium' :
-                                        'text-zinc-500'
-                                    }>
-                                        {line.text}
-                                    </span>
-                                </div>
-                            ))}
-                            <div className="flex gap-3 mt-1.5">
-                                <span className="text-primary opacity-80">➜</span>
-                                <span className="w-2 h-4 bg-zinc-400 animate-terminal-blink mt-1" />
-                            </div>
-                        </div>
+                        <Link
+                            href="https://github.com/Ali-w908/shiponclick-core"
+                            className="text-[12px] font-normal uppercase tracking-[0.12em] text-silver-mist hover:text-white transition-colors duration-200"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Explore the codebase
+                        </Link>
                     </div>
                 </div>
             </div>

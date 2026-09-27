@@ -1,69 +1,55 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
 const steps = [
     {
-        title: "Clone & Configure",
-        desc: "Run the npx command, enter your project name, and let the CLI scaffold your entire Next.js structure.",
-        number: "01"
+        number: '01',
+        title: 'Clone & Configure',
+        desc: 'Run the setup command, enter your project name, and let the CLI scaffold your entire Next.js structure.',
     },
     {
-        title: "Set Environment Vars",
-        desc: "Add your LemonSqueezy keys, Google/GitHub OAuth credentials, and database URL to the .env file.",
-        number: "02"
+        number: '02',
+        title: 'Set Environment Vars',
+        desc: 'Add your LemonSqueezy keys, OAuth credentials, and database URL to the .env file.',
     },
     {
-        title: "Deploy & Scale",
-        desc: "Push to Vercel. Your database migrations run automatically, and your SaaS is live to the world.",
-        number: "03"
-    }
+        number: '03',
+        title: 'Deploy & Scale',
+        desc: 'Push to Vercel. Database migrations run automatically and your SaaS is live to the world.',
+    },
 ];
 
 export function HowItWorks() {
-    const observerRef = useRef<IntersectionObserver | null>(null);
-
-    useEffect(() => {
-        observerRef.current = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        const elements = document.querySelectorAll('.scroll-reveal, .scroll-stagger');
-        elements.forEach((el) => observerRef.current?.observe(el));
-
-        return () => observerRef.current?.disconnect();
-    }, []);
-
     return (
-        <section id="how-it-works" className="py-24 bg-background-deep relative overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center scroll-reveal mb-20">
-                    <span className="text-primary font-mono text-sm tracking-wider uppercase mb-2 block">Workflow</span>
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-heading">
+        <section id="how-it-works" className="py-40 md:py-48 relative flex flex-col justify-center min-h-[80vh]">
+            <div className="mx-auto max-w-[1440px] px-6 lg:px-10 w-full">
+
+                {/* Section Header */}
+                <div className="max-w-2xl mx-auto text-center mb-24 md:mb-32">
+                    <span className="text-[12px] font-normal uppercase tracking-[0.15em] text-silver-mist mb-5 block">
+                        How it works
+                    </span>
+                    <h2 className="text-[36px] md:text-[48px] font-medium tracking-[-0.02em] text-white leading-[1.1]">
                         From idea to production in 3 steps.
                     </h2>
                 </div>
 
-                <div className="relative max-w-4xl mx-auto">
-                    {/* Connecting line (desktop only) */}
-                    <div className="hidden md:block absolute top-12 left-12 right-12 h-px bg-zinc-800" />
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 scroll-stagger relative z-10">
+                {/* Steps */}
+                <div className="relative max-w-5xl mx-auto">
+                    {/* Connecting line */}
+                    <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-px bg-white/[0.06]" />
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 relative z-10">
                         {steps.map((step, i) => (
-                            <div key={i} className="relative">
-                                <div className="h-24 w-24 rounded-2xl bg-surface border border-border-muted flex items-center justify-center text-3xl font-bold font-mono text-zinc-600 mb-6 shadow-xl mx-auto md:mx-0 group hover:border-primary/50 transition-colors">
+                            <div key={i} className="text-center flex flex-col items-center">
+                                <div className="text-[64px] font-light text-white/10 font-heading leading-none mb-8 tracking-tighter">
                                     {step.number}
                                 </div>
-                                <div className="text-center md:text-left">
-                                    <h3 className="text-xl font-bold text-white mb-3 font-heading">{step.title}</h3>
-                                    <p className="text-sm text-zinc-400 leading-relaxed">
-                                        {step.desc}
-                                    </p>
-                                </div>
+                                <h3 className="text-[20px] font-medium text-white mb-4">
+                                    {step.title}
+                                </h3>
+                                <p className="text-[15px] text-silver-mist leading-[1.6] max-w-[280px]">
+                                    {step.desc}
+                                </p>
                             </div>
                         ))}
                     </div>

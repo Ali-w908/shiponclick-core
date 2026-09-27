@@ -29,8 +29,8 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             <div className="w-full max-w-md p-6 relative z-10 animate-fade-in-up">
                 <div className="glass-card p-8 md:p-10 shadow-2xl">
                     <div className="flex flex-col items-center text-center mb-8">
-                        <Link href="/" className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 mb-6 group hover:scale-105 transition-transform">
-                            <Logo className="h-6 w-6 text-primary" />
+                        <Link href="/" className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-liquid-mist/10 border border-liquid-mist/20 mb-6 group hover:opacity-90 transition-opacity">
+                            <Logo className="h-6 w-6 text-liquid-mist" />
                         </Link>
                         <h1 className="text-2xl font-bold tracking-tight text-white font-heading">
                             Welcome back
@@ -42,13 +42,13 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 
                     {params?.registered === 'true' && <RegisteredMessage />}
 
-                    <Suspense fallback={<div className="h-[300px] flex items-center justify-center"><span className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" /></div>}>
+                    <Suspense fallback={<div className="h-[300px] flex items-center justify-center"><span className="w-6 h-6 border-2 border-liquid-mist/30 border-t-liquid-mist rounded-full animate-spin" /></div>}>
                         <LoginForm />
                     </Suspense>
 
                     <p className="mt-8 text-center text-sm text-zinc-400">
                         Don't have an account?{' '}
-                        <Link href="/register" className="font-semibold text-primary hover:text-primary-hover transition-colors">
+                        <Link href="/register" className="font-semibold text-liquid-mist hover:text-white transition-colors">
                             Sign up
                         </Link>
                     </p>

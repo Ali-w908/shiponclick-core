@@ -1,49 +1,33 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
 
 export function FinalCTA() {
-    const observerRef = useRef<IntersectionObserver | null>(null);
-
-    useEffect(() => {
-        observerRef.current = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        const elements = document.querySelectorAll('.scroll-reveal');
-        elements.forEach((el) => observerRef.current?.observe(el));
-
-        return () => observerRef.current?.disconnect();
-    }, []);
-
     return (
-        <section className="relative py-32 overflow-hidden">
-            <div className="absolute inset-0 bg-primary/5" />
-            
-            <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
-                <div className="mx-auto max-w-2xl scroll-reveal-scale">
-                    <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl font-heading mb-6">
+        <section className="relative py-40 overflow-hidden">
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(0, 130, 124, 0.08) 0%, transparent 70%)',
+                }}
+            />
+
+            <div className="mx-auto max-w-[1440px] px-6 lg:px-10 relative z-10 text-center">
+                <div className="mx-auto max-w-2xl">
+                    <h2 className="text-[36px] md:text-[48px] font-medium tracking-[-0.02em] text-white leading-[1.1] mb-6">
                         Your next SaaS idea deserves to ship today.
                     </h2>
-                    <p className="text-lg text-zinc-400 mb-10 max-w-xl mx-auto">
-                        Join hundreds of developers who stopped writing boilerplate and started building businesses.
+                    <p className="text-[16px] text-silver-mist mb-12 max-w-md mx-auto leading-[1.5]">
+                        Stop writing boilerplate. Start building your business.
                     </p>
                     <Link
                         href="/pricing"
-                        className="btn-primary text-lg px-10 py-4 inline-flex items-center gap-3"
+                        className="inline-flex items-center justify-center rounded-[6px] px-7 py-3.5 text-[14px] font-medium text-[#0a1a18] transition-all duration-200 hover:opacity-90 active:scale-95 bg-aurora-gradient"
                     >
-                        Get ShipOnClick Now
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        Get ShipOnClick — $149
                     </Link>
-                    <p className="mt-4 text-sm text-zinc-500 font-mono">
-                        One-time payment • Lifetime updates • Own the code
+                    <p className="mt-5 text-[12px] text-slate-deep tracking-[0.05em]">
+                        One-time payment · Lifetime updates · Own the code
                     </p>
                 </div>
             </div>

@@ -49,7 +49,7 @@ export default async function DashboardPage({
         ? Object.values(PRICING_PLANS).find((p) => p.variantId === org.lsVariantId)
         : null;
 
-    const planName = currentPlan?.name || 'Explorer';
+    const planName = currentPlan?.name || 'Open Source';
     const isActive = org.subscriptionStatus === 'ACTIVE' || org.subscriptionStatus === 'TRIALING';
 
     // Plan limits
@@ -92,7 +92,7 @@ export default async function DashboardPage({
                 <p className="mt-4 text-base md:text-lg text-text-muted max-w-2xl leading-relaxed">
                     {isActive
                         ? `You're on the ${planName} plan with full repository access.`
-                        : 'You\'re on the free Explorer plan. Explore the stack, then upgrade to ship.'
+                        : 'You\'re on the free Open Source plan. Explore the stack, then upgrade to ship.'
                     }
                 </p>
             </div>
@@ -143,13 +143,6 @@ export default async function DashboardPage({
                             href={`/${orgId}/playground`}
                         />
                         <QuickAction
-                            icon={<GraphIcon className="h-5 w-5 text-secondary" />}
-                            iconBg="bg-secondary/10 border-secondary/20"
-                            title="Knowledge Graph"
-                            description="Visualize codebase relations"
-                            href={`/${orgId}/knowledge-graph`}
-                        />
-                        <QuickAction
                             icon={<UsersIcon className="h-5 w-5 text-warning" />}
                             iconBg="bg-warning/10 border-warning/20"
                             title="Team Settings"
@@ -168,11 +161,12 @@ export default async function DashboardPage({
                             highlight
                         />
                         <QuickAction
-                            icon={<GraphIcon className="h-5 w-5 text-secondary" />}
-                            iconBg="bg-secondary/10 border-secondary/20"
-                            title="Knowledge Graph"
-                            description="Preview codebase structure"
-                            href={`/${orgId}/knowledge-graph`}
+                            icon={<BookIcon className="h-5 w-5 text-accent" />}
+                            iconBg="bg-accent/10 border-accent/20"
+                            title="Open-Core Repo"
+                            description="View public codebase"
+                            href="https://github.com/Ali-w908/shiponclick-core#readme"
+                            external
                         />
                         <QuickAction
                             icon={<BookIcon className="h-5 w-5 text-accent" />}

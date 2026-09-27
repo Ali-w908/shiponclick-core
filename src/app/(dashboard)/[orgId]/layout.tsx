@@ -38,7 +38,7 @@ export default async function OrgLayout({
     const currentPlan = org.lsVariantId
         ? Object.values(PRICING_PLANS).find((p) => p.variantId === org.lsVariantId)
         : null;
-    const planName = currentPlan?.name || 'Explorer';
+    const planName = currentPlan?.name || 'Open Source';
 
     // Get user initials for avatar
     const initials = session.user.name
@@ -68,8 +68,8 @@ export default async function OrgLayout({
 
                     <div className="flex items-center gap-3">
                         {/* Plan badge in header */}
-                        <span className={`plan-badge ${planName === 'Explorer' ? 'plan-badge-free' : 'plan-badge-active'} hidden sm:inline-flex`}>
-                            <span className={`h-1.5 w-1.5 rounded-full ${planName === 'Explorer' ? 'bg-text-muted' : 'bg-primary'}`} />
+                        <span className={`plan-badge ${planName === 'Open Source' ? 'plan-badge-free' : 'plan-badge-active'} hidden sm:inline-flex`}>
+                            <span className={`h-1.5 w-1.5 rounded-full ${planName === 'Open Source' ? 'bg-text-muted' : 'bg-primary'}`} />
                             {planName}
                         </span>
 

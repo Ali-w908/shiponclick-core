@@ -127,13 +127,13 @@ function LoginButton() {
     return (
         <button
             type="submit"
-            className="w-full btn-primary text-base py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full inline-flex items-center justify-center rounded-[6px] px-7 py-3.5 text-[14px] font-medium text-[#0a1a18] transition-all duration-200 hover:opacity-90 active:scale-95 bg-aurora-gradient disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={pending}
             aria-disabled={pending}
         >
             {pending ? (
                 <span className="flex items-center justify-center gap-2">
-                    <span className="h-4 w-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+                    <span className="h-4 w-4 border-2 border-[#0a1a18]/30 border-t-[#0a1a18] rounded-full animate-spin" />
                     Signing in...
                 </span>
             ) : (

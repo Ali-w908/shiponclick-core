@@ -57,3 +57,7 @@ graphify-out/
 /scripts/check-users.ts
 /scripts/debug-registration.ts
 /scripts/test_ls.ts
+
+# Documentation specific to the user's launch (Not to be pushed to the open source/starter kit repo)
+/docs/LAUNCH_PLAN.md
+/docs/BRAND_BOOK.md

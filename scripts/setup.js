@@ -52,11 +52,15 @@ async function main() {
 
     console.log(`${colors.gray}Setting up ${slug} in ${currentDir}...${colors.reset}\n`);
 
-    // 0. Remove original git history to start fresh (Cross-platform)
+    // 0. Re-link git remote to upstream to enable AI Semantic Merging
     const gitDir = path.join(currentDir, '.git');
     if (fs.existsSync(gitDir)) {
-        console.log(`${colors.cyan}🧹 Cleaning up starter repository history...${colors.reset}`);
-        fs.rmSync(gitDir, { recursive: true, force: true });
+        console.log(`${colors.cyan}🧹 Re-linking git remote to upstream...${colors.reset}`);
+        try {
+            execSync('git remote rename origin upstream', { stdio: 'ignore' });
+        } catch (e) {
+            // Ignore if already renamed or other errors
+        }
     }
 
     console.log(`${colors.cyan}📦 Configuring project structure...${colors.reset}`);

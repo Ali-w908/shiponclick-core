@@ -1,11 +1,8 @@
 'use server';
 
 import { auth } from '@/lib/auth';
-import prisma from '@/lib/db';
-import { inviteUserToRepo } from '@/lib/github';
-import { SubscriptionStatus } from '@prisma/client';
-
 import { revalidatePath } from 'next/cache';
+import { GithubService } from '@/domain/user/github-service';
 
 export async function updateGithubUsername(username: string) {
     const session = await auth();
@@ -13,30 +10,13 @@ export async function updateGithubUsername(username: string) {
         return { success: false, error: 'Unauthorized' };
     }
 
-    if (!username || username.trim() === '') {
-        return { success: false, error: 'GitHub username is required.' };
-    }
-
     try {
-        const user = await prisma.user.findUnique({
-            where: { id: session.user.id },
-            select: { githubInviteStatus: true }
-        });
-
-        if (user?.githubInviteStatus === 'ACCEPTED') {
-            return { success: false, error: 'Your GitHub invite has already been accepted. You cannot change your username. Contact support if you need assistance.' };
-        }
-
-        await prisma.user.update({
-            where: { id: session.user.id },
-            data: { githubUsername: username.trim() },
-        });
-        
+        await GithubService.updateGithubUsername(session.user.id, username);
         revalidatePath('/', 'layout');
         return { success: true };
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error updating GitHub username:', error);
-        return { success: false, error: 'Failed to update GitHub username.' };
+        return { success: false, error: error.message || 'Failed to update GitHub username.' };
     }
 }
 
@@ -48,65 +28,14 @@ export async function requestGithubAccess() {
     }
 
     try {
-        const user = await prisma.user.findUnique({
-            where: { id: session.user.id },
-            select: { githubUsername: true }
-        });
-
-        if (!user?.githubUsername) {
-            return { success: false, error: 'Please link your GitHub account in the dashboard first.' };
-        }
-
-        const githubUsername = user.githubUsername;
-
-        // 1. Validate the user has an active, paid subscription.
-        // The user must own an organization that has an ACTIVE subscription.
-        const organizations = await prisma.organization.findMany({
-            where: {
-                ownerId: session.user.id,
-                subscriptionStatus: SubscriptionStatus.ACTIVE,
-            },
-        });
-
-        if (organizations.length === 0) {
-            return { 
-                success: false, 
-                error: 'An active subscription is required to access the codebase. Please upgrade your plan.' 
-            };
-        }
-
-        // 2. Update their invite status to pending
-        await prisma.user.update({
-            where: { id: session.user.id },
-            data: { githubInviteStatus: 'PENDING' },
-        });
-
-        // 3. Call inviteUserToRepo to send the invite via Octokit
-        const inviteResult = await inviteUserToRepo(githubUsername);
-
-        if (!inviteResult.success) {
-            // Update status to FAILED
-            await prisma.user.update({
-                where: { id: session.user.id },
-                data: { githubInviteStatus: 'FAILED' },
-            });
-            return { success: false, error: inviteResult.error || 'Failed to send GitHub invitation.' };
-        }
-
-        // 4. Update status to SENT
-        await prisma.user.update({
-            where: { id: session.user.id },
-            data: { githubInviteStatus: 'SENT' },
-        });
-
+        const result = await GithubService.requestGithubAccess(session.user.id);
         revalidatePath('/', 'layout');
         return { 
             success: true, 
-            message: 'Invitation sent! Please check your email or GitHub notifications to accept it.' 
+            message: result.message
         };
-
     } catch (error: any) {
         console.error('Error requesting GitHub access:', error);
-        return { success: false, error: 'An unexpected error occurred. Please try again.' };
+        return { success: false, error: error.message || 'An unexpected error occurred. Please try again.' };
     }
 }

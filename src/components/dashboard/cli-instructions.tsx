@@ -117,7 +117,7 @@ export function CliInstructions() {
                     <svg className="w-5 h-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div className="space-y-1 text-sm text-zinc-500">
-                    <p>This command securely clones the boilerplate, initializes a fresh Git history, and runs the interactive <code className="text-zinc-400 bg-zinc-800/50 px-1 py-0.5 rounded">setup.js</code> script.</p>
+                    <p>This command securely clones the boilerplate, re-links the repository to upstream, and runs the interactive <code className="text-zinc-400 bg-zinc-800/50 px-1 py-0.5 rounded">setup.js</code> script.</p>
                     <p>The script configures your <code className="text-zinc-400 bg-zinc-800/50 px-1 py-0.5 rounded">.env</code>, establishes your database schema, and strips our branding automatically.</p>
                 </div>
             </div>

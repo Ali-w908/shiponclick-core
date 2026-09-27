@@ -72,7 +72,6 @@ function getNavigation(slug: string): NavItem[] {
     return [
         { name: 'Overview', href: `/${slug}/dashboard`, icon: HomeIcon },
         { name: 'Stack Explorer', href: `/${slug}/playground`, icon: SparklesIcon, badge: 'New' },
-        { name: 'Knowledge Graph', href: `/${slug}/knowledge-graph`, icon: GraphIcon },
         { name: 'Team', href: `/${slug}/settings`, icon: UsersIcon },
         { name: 'Billing', href: `/${slug}/settings/billing`, icon: CreditCardIcon },
     ];
@@ -83,7 +82,7 @@ function getNavigation(slug: string): NavItem[] {
 function SidebarContent({ slug, isOwner, planName, onClose }: { slug: string; isOwner: boolean; planName?: string; onClose?: () => void }) {
     const pathname = usePathname();
     const navigation = getNavigation(slug);
-    const isFree = !planName || planName === 'Explorer';
+    const isFree = !planName || planName === 'Open Source';
 
     return (
         <div className="flex h-full w-64 flex-col bg-background-deep border-r border-border-muted">

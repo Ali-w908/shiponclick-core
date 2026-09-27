@@ -8,9 +8,8 @@ export function InviteForm({ orgId }: { orgId: string }) {
     const [state, formAction, pending] = useActionState(inviteUser, null);
 
     return (
-        <form action={formAction} className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Invite Member</h3>
-            <div className="flex gap-4">
+        <form action={formAction} className="space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                     <label htmlFor="email" className="sr-only">Email address</label>
                     <input
@@ -19,7 +18,7 @@ export function InviteForm({ orgId }: { orgId: string }) {
                         id="email"
                         required
                         placeholder="colleague@example.com"
-                        className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="block w-full rounded-xl bg-black/50 border border-white/10 px-4 py-3 text-sm text-foreground placeholder-text-muted focus:border-primary/50 focus:ring-1 focus:ring-primary/50 outline-none transition-all"
                     />
                 </div>
                 <div>
@@ -27,7 +26,7 @@ export function InviteForm({ orgId }: { orgId: string }) {
                     <select
                         name="role"
                         id="role"
-                        className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="block w-full sm:w-48 rounded-xl bg-black/50 border border-white/10 px-4 py-3 text-sm text-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/50 outline-none transition-all"
                         defaultValue="MEMBER"
                     >
                         <option value="MEMBER">Member</option>
@@ -38,9 +37,9 @@ export function InviteForm({ orgId }: { orgId: string }) {
                 <button
                     type="submit"
                     disabled={pending}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                    className="inline-flex justify-center items-center rounded-xl bg-primary text-primary-foreground px-6 py-3 text-sm font-bold shadow-md hover:opacity-90 focus:outline-none transition-opacity disabled:opacity-50"
                 >
-                    {pending ? 'Inviting...' : 'Invite'}
+                    {pending ? 'Inviting...' : 'Send Invite'}
                 </button>
             </div>
 

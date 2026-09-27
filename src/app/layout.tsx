@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { Analytics } from "@vercel/analytics/react";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const outfit = Outfit({
+  variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
@@ -33,11 +39,12 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
       <body
-        className={`${ibmPlexSans.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#0F172A] text-[#F8FAFC]`}
+        className={`${jakarta.variable} ${outfit.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         <Providers>
           {children}
           <FeedbackWidget userEmail={session?.user?.email ?? undefined} />
+          <Analytics />
         </Providers>
       </body>
     </html>

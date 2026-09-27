@@ -63,37 +63,36 @@ export function MembersTable({
     }
 
     return (
-        <div className="space-y-8">
-            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
-                <div className="border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">Active Members</h3>
-                </div>
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-50 dark:bg-gray-900">
-                        <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">User</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Role</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Joined</th>
-                            {isAdminOrOwner && <th scope="col" className="relative px-6 py-3"><span className="sr-only">Actions</span></th>}
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+        <div className="space-y-12">
+            <div>
+                <h3 className="text-sm font-bold text-foreground mb-4">Active Members</h3>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-white/5">
+                        <thead>
+                            <tr>
+                                <th scope="col" className="py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">User</th>
+                                <th scope="col" className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">Role</th>
+                                <th scope="col" className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">Joined</th>
+                                {isAdminOrOwner && <th scope="col" className="relative px-6 py-3"><span className="sr-only">Actions</span></th>}
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/5">
                         {members.map((member) => (
                             <tr key={member.id}>
-                                <td className="whitespace-nowrap px-6 py-4">
+                                <td className="whitespace-nowrap py-4">
                                     <div className="flex items-center">
-                                        <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                        <div className="h-10 w-10 flex-shrink-0 rounded-full bg-surface/50 flex items-center justify-center ring-1 ring-white/10">
                                             {member.user.image ? (
-                                                <img className="h-10 w-10 rounded-full" src={member.user.image} alt="" />
+                                                <img className="h-10 w-10 rounded-full object-cover" src={member.user.image} alt="" />
                                             ) : (
-                                                <span className="font-medium text-gray-500 dark:text-gray-400">
+                                                <span className="font-bold text-text-muted">
                                                     {member.user.name?.[0] || member.user.email[0].toUpperCase()}
                                                 </span>
                                             )}
                                         </div>
                                         <div className="ml-4">
-                                            <div className="text-sm font-medium text-gray-900 dark:text-white">{member.user.name || 'Unknown'}</div>
-                                            <div className="text-sm text-gray-500 dark:text-gray-400">{member.user.email}</div>
+                                            <div className="text-sm font-bold text-foreground">{member.user.name || 'Unknown'}</div>
+                                            <div className="text-sm text-text-secondary">{member.user.email}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -102,18 +101,18 @@ export function MembersTable({
                                         <select
                                             value={member.role}
                                             onChange={(e) => handleRoleChange(member.id, e.target.value as UserRole)}
-                                            className="block rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                            className="block rounded-lg bg-black/50 border border-white/10 px-3 py-1.5 text-sm text-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/50 outline-none transition-all"
                                         >
                                             <option value="MEMBER">Member</option>
                                             <option value="ADMIN">Admin</option>
                                         </select>
                                     ) : (
-                                        <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                        <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary ring-1 ring-primary/20">
                                             {member.role}
                                         </span>
                                     )}
                                 </td>
-                                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                <td className="whitespace-nowrap px-6 py-4 text-sm text-text-secondary">
                                     {new Date(member.createdAt).toLocaleDateString()}
                                 </td>
                                 {isAdminOrOwner && (
@@ -121,7 +120,7 @@ export function MembersTable({
                                         {member.role !== 'OWNER' && (
                                             <button
                                                 onClick={() => handleRemoveMember(member.id)}
-                                                className="text-red-600 hover:text-red-900 dark:hover:text-red-400"
+                                                className="text-sm font-bold text-red-500 hover:text-red-400 transition-colors"
                                             >
                                                 Remove
                                             </button>
@@ -133,38 +132,40 @@ export function MembersTable({
                     </tbody>
                 </table>
             </div>
+            </div>
 
             {invites.length > 0 && (
-                <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
-                    <div className="border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white">Pending Invites</h3>
-                    </div>
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead className="bg-gray-50 dark:bg-gray-900">
-                            <tr>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Email</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Role</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Sent</th>
-                                {isAdminOrOwner && <th scope="col" className="relative px-6 py-3"><span className="sr-only">Actions</span></th>}
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+                <div>
+                    <h3 className="text-sm font-bold text-foreground mb-4">Pending Invites</h3>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-white/5">
+                            <thead>
+                                <tr>
+                                    <th scope="col" className="py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">Email</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">Role</th>
+                                    <th scope="col" className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-text-muted">Sent</th>
+                                    {isAdminOrOwner && <th scope="col" className="relative px-6 py-3"><span className="sr-only">Actions</span></th>}
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5">
                             {invites.map((invite) => (
                                 <tr key={invite.id}>
-                                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white">
+                                    <td className="whitespace-nowrap py-4 text-sm font-medium text-foreground">
                                         {invite.email}
                                     </td>
-                                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
-                                        {invite.role}
+                                    <td className="whitespace-nowrap px-6 py-4 text-sm text-text-secondary">
+                                        <span className="inline-flex items-center rounded-full bg-surface/50 px-2.5 py-0.5 text-xs font-bold text-text-muted ring-1 ring-white/10">
+                                            {invite.role}
+                                        </span>
                                     </td>
-                                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
+                                    <td className="whitespace-nowrap px-6 py-4 text-sm text-text-secondary">
                                         {new Date(invite.createdAt).toLocaleDateString()}
                                     </td>
                                     {isAdminOrOwner && (
                                         <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                                             <button
                                                 onClick={() => handleRevokeInvite(invite.id)}
-                                                className="text-red-600 hover:text-red-900 dark:hover:text-red-400"
+                                                className="text-sm font-bold text-text-muted hover:text-red-400 transition-colors"
                                             >
                                                 Revoke
                                             </button>
@@ -174,6 +175,7 @@ export function MembersTable({
                             ))}
                         </tbody>
                     </table>
+                </div>
                 </div>
             )}
         </div>
