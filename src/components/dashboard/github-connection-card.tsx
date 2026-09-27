@@ -103,7 +103,7 @@ export function GithubConnectionCard({ hasGithubOAuth, orgId, inviteClaimed }: G
                 {!inviteClaimed && !hasGithubOAuth && (
                     <button
                         onClick={handleConnect}
-                        className="btn-glow text-sm px-5 py-2.5 whitespace-nowrap bg-zinc-100 text-zinc-900 hover:bg-zinc-200 border-transparent shadow-none"
+                        className="text-sm px-5 py-2.5 whitespace-nowrap bg-zinc-100 text-zinc-900 hover:bg-zinc-200 border-transparent shadow-none rounded-md font-semibold transition-colors"
                     >
                         Connect GitHub to Claim
                     </button>

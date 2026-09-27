@@ -105,7 +105,7 @@ async function main() {
     }
 
     try {
-        const outDir = path.join(process.cwd(), '.graphify');
+        const outDir = path.join(process.cwd(), '.engram');
         if (fs.existsSync(outDir)) {
             if (fs.existsSync(path.join(outDir, 'graph.json'))) {
                 fs.copyFileSync(path.join(outDir, 'graph.json'), path.join(kgDir, 'graph.json'));
