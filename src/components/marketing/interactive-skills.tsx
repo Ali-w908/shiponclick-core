@@ -86,7 +86,7 @@ const SkillTerminal = ({ skill, output, windowClass }: { skill: string, output: 
                     <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                    <span className="ml-2 text-[11px] font-mono text-white/30 uppercase tracking-widest">{skill.replace('/', '')}.sh<span>
+                    <span className="ml-2 text-[11px] font-mono text-white/30 uppercase tracking-widest">{skill.replace('/', '')}.sh</span>
                     </div>
                         <div className="p-5 font-mono text-[13px] text-silver-mist text-left min-h-[110px] flex flex-col justify-center">
                             <div className="text-white flex items-center">
