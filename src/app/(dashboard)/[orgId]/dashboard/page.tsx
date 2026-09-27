@@ -85,8 +85,8 @@ export default async function DashboardPage({
             )}
 
             {/* Welcome Section */}
-            <div className="mb-12">
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground font-heading truncate max-w-full">
+            <div className="mb-12 w-full min-w-0">
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground font-heading truncate max-w-full break-all">
                     Welcome back, {userName}
                 </h1>
                 <p className="mt-4 text-base md:text-lg text-text-muted max-w-2xl leading-relaxed">

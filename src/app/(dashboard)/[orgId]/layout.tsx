@@ -48,7 +48,7 @@ export default async function OrgLayout({
     return (
         <div className="flex h-screen overflow-hidden bg-background">
             {/* Desktop Sidebar */}
-            <aside className="hidden md:flex md:shrink-0">
+            <aside className="hidden md:flex" style={{ flexShrink: 0, width: '16rem' }}>
                 <DashboardSidebar slug={org.slug} isOwner={isOwner} planName={planName} />
             </aside>
 
@@ -56,11 +56,11 @@ export default async function OrgLayout({
             <div className="flex flex-1 flex-col overflow-hidden min-w-0">
                 {/* Header */}
                 <header className="flex h-14 items-center justify-between border-b border-border-muted bg-background-deep px-4 md:px-6">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
                         {/* Mobile menu */}
                         <MobileSidebar slug={org.slug} isOwner={isOwner} planName={planName} />
-                        <div className="hidden md:block">
-                            <h1 className="text-sm font-semibold text-foreground truncate max-w-[200px]">
+                        <div className="hidden md:block min-w-0 flex-1">
+                            <h1 className="text-sm font-semibold text-foreground truncate max-w-full">
                                 {org.name}
                             </h1>
                         </div>
